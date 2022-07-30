@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Ano</string>
+    <string name="welcome_to_ano">Welcome to Ano</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="welcome_to_ano_">Welcome to ANO,</string>
+    <string name="forget_password">forget password?</string>
+    <string name="new_user_signup">New User? SignUp</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="phone_number">Phone Number</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="signup">SignUp</string>
+    <string name="already_user_login">Already user? Login</string>
+</resources>
