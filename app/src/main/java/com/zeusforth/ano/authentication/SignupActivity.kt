@@ -39,8 +39,6 @@ class SignupActivity : AppCompatActivity() {
                 add<SignUpPhone>(R.id.fragment_sign_up_phone)
             }
         }
-
-
     }
 
 }

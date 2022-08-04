@@ -61,6 +61,7 @@ class LoginActivity : AppCompatActivity() {
 
     }
     private fun jsonParse(name: String , pass: String) {
+        progress_bar.visibility = View.VISIBLE
         Log.e(TAG, "${name} and ${pass}")
         val url =
             "https://amsportalapp.herokuapp.com/api/users/auth?username=${name}&password=${pass}"
@@ -81,7 +82,7 @@ class LoginActivity : AppCompatActivity() {
 //            editor.putString("pass", pass)
 //            editor.apply()
 
-                progress_bar.visibility = View.INVISIBLE
+
                 startActivity(intent)
             } catch (e: JSONException) {
                 Log.e(TAG, e.toString())
