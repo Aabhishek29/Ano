@@ -1,6 +1,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Ano" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Ano" parent="Theme.MaterialComponents.NoActionBar">
+
+
+        <item name="actionBarTheme">@style/Theme.MaterialComponents.NoActionBar</item>
+        <!-- enable window content transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+
+        <!-- specify enter and exit transitions -->
+        <item name="android:windowEnterTransition">@transition/fade_out</item>
+        <item name="android:windowExitTransition">@transition/fade_out</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary_light</item>
@@ -13,4 +22,34 @@
         <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+
+    <style name="Theme.Ano.secondary" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="backgroundColor">@color/primary</item>
+
+        <item name="android:windowDisablePreview">true</item>
+        <!-- enable window content transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+
+        <!-- specify enter and exit transitions -->
+        <item name="android:windowEnterTransition">@transition/fade_out</item>
+        <item name="android:windowExitTransition">@transition/fade_out</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_light</item>
+        <item name="colorOnPrimary">@color/primary_dark</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/secondary_light</item>
+        <item name="colorOnSecondary">@color/secondary_dark</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+
+
+
+
+
 </resources>

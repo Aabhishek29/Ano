@@ -1,5 +1,6 @@
 package com.zeusforth.ano.authentication
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -20,13 +21,9 @@ import com.zeusforth.ano.R
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SignUpPhone.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class SignUpPhone : Fragment() {
-    // TODO: Rename and change types of parameters
+
     private var param1: String? = null
     private var param2: String? = null
     private val TAG: String = "SignUPFragment"
@@ -50,13 +47,14 @@ class SignUpPhone : Fragment() {
         signup.setOnClickListener{
             Log.d(TAG,"Signup call to Fragment OTP")
             val otpFragment: Fragment = OtpFragment()
-            activity?.supportFragmentManager?.beginTransaction()?.setReorderingAllowed(true)?.replace(R.id.fragment_otp_phone,otpFragment)?.commit()
+            activity?.supportFragmentManager?.beginTransaction()?.setReorderingAllowed(true)?.replace(R.id.fragment_sign_up_phone,otpFragment)?.commit()
 
         }
 
         val login_activity_btn = root.findViewById<TextView>(R.id.login_activity_btn)
         login_activity_btn.setOnClickListener {
-            startActivity(Intent(root.context,LoginActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+            startActivity(Intent(root.context,LoginActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK),
+                ActivityOptions.makeSceneTransitionAnimation(activity).toBundle())
         }
         return root
     }

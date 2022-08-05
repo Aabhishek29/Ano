@@ -15,16 +15,15 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_sign_up_phone"
         android:layout_width="match_parent"
-        android:name="com.zeusforth.ano.authentication.SignUpPhone"
         android:layout_height="match_parent"
         tools:ignore="MissingConstraints" />
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_otp_phone"
-            android:layout_width="match_parent"
-            android:name="com.zeusforth.ano.authentication.SignUpPhone"
-            android:layout_height="match_parent"
-            tools:ignore="MissingConstraints" />
+<!--        <androidx.fragment.app.FragmentContainerView-->
+<!--            android:id="@+id/fragment_otp_phone"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:name="com.zeusforth.ano.authentication.SignUpPhone"-->
+<!--            android:layout_height="match_parent"-->
+<!--            tools:ignore="MissingConstraints" />-->
 
     </FrameLayout>
 

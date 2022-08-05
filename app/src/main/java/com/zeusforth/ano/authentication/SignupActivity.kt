@@ -32,10 +32,13 @@ class SignupActivity : AppCompatActivity() {
         window.setStatusBarColor(ContextCompat.getColor(baseContext , R.color.primary))
 
         // To connect the fragment with activity
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             supportFragmentManager.commit {
+                setCustomAnimations(
+                     R.anim.slide_in, R.anim.fadeout,
+                    R.anim.fadein,R.anim.slide_out
+                )
                 setReorderingAllowed(true)
-
                 add<SignUpPhone>(R.id.fragment_sign_up_phone)
             }
         }

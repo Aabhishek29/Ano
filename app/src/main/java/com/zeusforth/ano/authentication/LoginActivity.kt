@@ -1,5 +1,6 @@
 package com.zeusforth.ano.authentication
 
+import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -56,7 +57,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         signup_btn.setOnClickListener {
-            startActivity(Intent(this, SignupActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+            startActivity(Intent(this, SignupActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK),ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
     }
@@ -83,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
 //            editor.apply()
 
 
-                startActivity(intent)
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
             } catch (e: JSONException) {
                 Log.e(TAG, e.toString())
                 e.printStackTrace()

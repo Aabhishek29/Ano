@@ -16,20 +16,22 @@
         tools:targetApi="31">
         <activity
             android:name=".authentication.SignupActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-            android:exported="false" />
+            android:theme="@style/Theme.Ano"/>
+        android:exported="false" />
         <activity
             android:name=".authentication.LoginActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/Theme.Ano"/>
+
         <activity
             android:name=".HomeActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.DayNight" />
+            android:theme="@style/Theme.Ano"/>
+
         <activity
             android:name=".SplashActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            android:theme="@style/Theme.Ano">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
