@@ -39,7 +39,7 @@ class OtpFragment : Fragment() {
         val root =inflater.inflate(R.layout.fragment_otp, container, false)
 
 
-        val next_btn = root.findViewById<Button>(R.id.next_btn)
+        val next_btn = root.findViewById<Button>(R.id.check_otp)
         next_btn.setOnClickListener{
 
             val ProfileFragment: Fragment =

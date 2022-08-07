@@ -9,4 +9,5 @@
     <color name="secondary_dark">#0037CB</color>
     <color name="black">#000000</color>
     <color name="yellow">#FFC107</color>
+    <color name="light_white">#ddd</color>
 </resources>

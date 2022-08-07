@@ -10,19 +10,72 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="OTP frag"
-        android:textSize="32dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="25dp"
-        />
+        android:text="@string/enter_otp"
+        android:textSize="22sp"
+        android:layout_marginVertical="20dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/otp_first_num"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/light_white"
+            android:inputType="number"
+            android:layout_marginHorizontal="15dp"
+            />
+        <EditText
+            android:id="@+id/otp_second_num"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/light_white"
+            android:inputType="number"
+            android:layout_marginHorizontal="15dp"
+            />
+        <EditText
+            android:id="@+id/otp_third_num"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/light_white"
+            android:inputType="number"
+            android:layout_marginHorizontal="15dp"
+            />
+        <EditText
+            android:id="@+id/otp_forth_num"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/light_white"
+            android:inputType="number"
+            android:layout_marginHorizontal="15dp"
+            />
+    </LinearLayout>
+
+
     <Button
-        android:id="@+id/next_btn"
+        android:id="@+id/check_otp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/login_btn_background"
+        android:paddingHorizontal="80dp"
+        android:text="@string/verify_otp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/resend_otp_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resend OTP ?"
+        android:layout_marginTop="28dp"
+        android:textSize="18sp"
         android:layout_gravity="center"
         android:textColor="@color/white"
-        android:background="@color/primary"
         />
 
 </LinearLayout>
