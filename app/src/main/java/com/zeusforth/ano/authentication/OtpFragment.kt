@@ -1,6 +1,7 @@
 package com.zeusforth.ano.authentication
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,9 @@ class OtpFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var username:String
+    private lateinit var password:String
+    private lateinit var ph_number:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +41,13 @@ class OtpFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val root =inflater.inflate(R.layout.fragment_otp, container, false)
+        username = arguments?.getString("username").toString()
+        password = arguments?.getString("password").toString()
+        ph_number = arguments?.getString("ph_number").toString()
+
+        Log.i("userdata", "onCreateView: username: ${username}  password ${password} ph_no ${ph_number}")
+
+
 
 
         val next_btn = root.findViewById<Button>(R.id.check_otp)

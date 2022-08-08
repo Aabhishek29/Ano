@@ -8,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.add
@@ -24,6 +26,10 @@ private const val ARG_PARAM2 = "param2"
 
 class SignUpPhone : Fragment() {
 
+    private lateinit var user_name:String ;
+    private lateinit var password:String ;
+    private lateinit var ph_number:String ;
+    private var check:Boolean = false;
     private var param1: String? = null
     private var param2: String? = null
     private val TAG: String = "SignUPFragment"
@@ -44,10 +50,67 @@ class SignUpPhone : Fragment() {
         val root = inflater.inflate(R.layout.fragment_sign_up_phone, container, false)
 
         val signup = root.findViewById<Button>(R.id.signup)
+        val username_v = root.findViewById<EditText>(R.id.username)
+        val password_v = root.findViewById<EditText>(R.id.password)
+        val confirm_password_v = root.findViewById<EditText>(R.id.confirm_password)
+        val ph_number_v = root.findViewById<EditText>(R.id.ph_number)
         signup.setOnClickListener{
             Log.d(TAG,"Signup call to Fragment OTP")
-            val otpFragment: Fragment = OtpFragment()
-            activity?.supportFragmentManager?.beginTransaction()?.setReorderingAllowed(true)?.replace(R.id.fragment_sign_up_phone,otpFragment)?.commit()
+            check = true;
+            if (!username_v.text.isEmpty()){
+                user_name = username_v.text.toString()
+
+            }else{
+                Toast.makeText(context,"username is required",Toast.LENGTH_SHORT).show()
+                check = false
+            }
+
+            if (!password_v.text.isEmpty() && password_v.text.length>=6){
+                if(password_v.text.toString().equals(confirm_password_v.text.toString())){
+                    password = password_v.text.toString()
+                }else{
+
+                    Toast.makeText(context,"Password does not match!",Toast.LENGTH_SHORT).show()
+                    check =false
+                }
+
+            }else {
+                Toast.makeText(context,"Password is required, it should be greater than 6 character",Toast.LENGTH_SHORT).show()
+                check = false
+            }
+
+            if (!ph_number_v.text.isEmpty() && ph_number_v.text.length ==10){
+                ph_number = ph_number_v.text.toString()
+
+            }else{
+
+                check = false
+                Toast.makeText(context,"Valid Phone number required",Toast.LENGTH_SHORT).show()
+
+            }
+
+
+            var data:Bundle = Bundle()
+            if (check){
+                data.putString("username",user_name)
+                data.putString("password",password)
+                data.putString("ph_number",ph_number)
+
+
+                val otpFragment: Fragment = OtpFragment()
+                otpFragment.arguments = data
+                activity?.supportFragmentManager?.beginTransaction()?.setReorderingAllowed(true)?.replace(R.id.fragment_sign_up_phone,otpFragment)?.commit()
+            }else{
+
+                Toast.makeText(context,"Plese fill all details",Toast.LENGTH_SHORT).show()
+
+            }
+
+
+
+
+
+
 
         }
 

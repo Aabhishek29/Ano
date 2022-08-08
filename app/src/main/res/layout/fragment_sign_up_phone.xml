@@ -101,14 +101,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/full_name"
+        android:text="@string/phone_number"
         android:layout_marginTop="18dp"
         android:textSize="18sp"
         android:layout_marginHorizontal="50dp"
         android:textColor="@color/white" />
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/ph_number"
         android:labelFor="@+id/ph_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -116,7 +116,8 @@
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/text_view_background"
-        android:inputType="text"
+        android:inputType="phone"
+        android:maxLength="10"
         android:autofillHints="name"
         android:padding="10dp"
         tools:ignore="TextFields" />
