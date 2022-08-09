@@ -1,28 +1,54 @@
 package com.zeusforth.ano
 
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.*
-import com.android.volley.toolbox.HttpHeaderParser
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
-import org.json.JSONException
-import org.json.JSONObject
-import java.io.UnsupportedEncodingException
+import com.google.android.material.appbar.MaterialToolbar
+import com.google.firebase.auth.FirebaseAuth
+import com.zeusforth.ano.authentication.LoginActivity
 
 
 class HomeActivity : AppCompatActivity()  {
     private val TAG = "HomeActivity";
+    private lateinit var topAppBar:MaterialToolbar
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        topAppBar = findViewById(R.id.topAppBar)
+
+
+
+
+        topAppBar.setNavigationOnClickListener {
+            // Handle navigation icon press
+        }
+
+        topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.action_sign_out -> {
+                    val user = FirebaseAuth.getInstance()
+                    user.signOut()
+                    Toast.makeText(this, "SignOut Successfully", Toast.LENGTH_SHORT)
+                        .show()
+                    val intent = Intent(this, LoginActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                    finish()
+                    true
+                }
+                else -> false
+            }
+        }
 //        jsonParse()
     }
+
+
 
 
     }

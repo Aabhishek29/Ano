@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "922164530822",
+    "project_id": "amsportal",
+    "storage_bucket": "amsportal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922164530822:android:6851248040f0832d144b07",
+        "android_client_info": {
+          "package_name": "com.zeusforth.ano"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "922164530822-4v9skh6hp2h6sap5ubl6p7fl0f4ta3ld.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zeusforth.ano",
+            "certificate_hash": "7c182c853dd0e84f86e43a25423816a48ba2ccc0"
+          }
+        },
+        {
+          "client_id": "922164530822-ggjvkb0t1fuj5hd6sv72bvnc67f51jjv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA771QOXhQIsolTwq9izLJBTYzg3u4bfAs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "922164530822-ggjvkb0t1fuj5hd6sv72bvnc67f51jjv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
