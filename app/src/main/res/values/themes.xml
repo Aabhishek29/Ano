@@ -11,7 +11,7 @@
         <item name="android:windowEnterTransition">@transition/fade_out</item>
         <item name="android:windowExitTransition">@transition/fade_out</item>
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimary">@color/secondary_dark</item>
         <item name="colorPrimaryVariant">@color/primary_light</item>
         <item name="colorOnPrimary">@color/primary_dark</item>
         <!-- Secondary brand color. -->
@@ -20,7 +20,12 @@
         <item name="colorOnSecondary">@color/secondary_dark</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+
+
+                <!-- Customize your theme here. -->
+
+
+        <item name="buttonTint" >@color/secondary_dark</item>
     </style>
 
 
