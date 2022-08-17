@@ -36,6 +36,7 @@ android {
 
 dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.6'
+
     def fragment_version = "1.5.0"
 
     // dependences for fragment
@@ -45,7 +46,7 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
     implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.appcompat:appcompat:1.5.0'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.android.volley:volley:1.2.1'
@@ -61,4 +62,6 @@ dependencies {
 
     implementation("androidx.compose.material3:material3:1.0.0-alpha15")
     implementation("androidx.compose.material3:material3-window-size-class:1.0.0-alpha15")
+    implementation("androidx.drawerlayout:drawerlayout:1.1.1")
+
 }

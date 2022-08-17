@@ -28,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var password:EditText
     lateinit var signup_btn : TextView
     lateinit var progress_bar: ProgressBar
+    lateinit var btn1:Button
     lateinit var companyId:String
     lateinit var agentId:String
     private lateinit var sharedPreferences: SharedPreferences
@@ -41,16 +42,17 @@ class LoginActivity : AppCompatActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.setStatusBarColor(ContextCompat.getColor(baseContext , R.color.primary))
 
-        val btn1 = findViewById<Button>(R.id.LoginBtn)
-        username = findViewById<EditText>(R.id.username)
-        password = findViewById<EditText>(R.id.user_password)
+        btn1 = findViewById<Button>(R.id.LoginBtn)
+        username = findViewById(R.id.username)
+        password = findViewById(R.id.user_password)
         signup_btn = findViewById(R.id.signup_activity_btn)
 
 
-        progress_bar = findViewById<ProgressBar>(R.id.progress_bar)
+        progress_bar = findViewById(R.id.progress_bar)
         requestQueue = Volley.newRequestQueue(this)
         btn1.setOnClickListener {
             progress_bar.visibility = View.VISIBLE
+            btn1.isEnabled = false
 
             jsonParse(username.text.toString(),password.text.toString())
 
@@ -62,7 +64,6 @@ class LoginActivity : AppCompatActivity() {
 
     }
     private fun jsonParse(name: String , pass: String) {
-        progress_bar.visibility = View.VISIBLE
         Log.e(TAG, "${name} and ${pass}")
         val url =
             "https://amsportalapp.herokuapp.com/api/users/auth?username=${name}&password=${pass}"
@@ -70,24 +71,46 @@ class LoginActivity : AppCompatActivity() {
         val request = JsonObjectRequest(Request.Method.GET, url, null, { response ->
             try {
                 Log.e(TAG, response.toString())
-//            Toast.makeText(this,"Login Successful",Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, HomeActivity::class.java)
-                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                if (response.get("status") == "true"){
+                    if (response.get("authenticated") == "true"){
+                        Toast.makeText(this,"Login Successful",Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this, HomeActivity::class.java)
+                            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
 
-//            sharedPreferences = baseContext.getSharedPreferences("
-//            MY_PREF", Context.MODE_PRIVATE)
-//            val editor = sharedPreferences.edit()
-//            editor.putString("agent_id", agentId)
-//            editor.putString("company_id", companyId)
-//            editor.putString("name", name)
-//            editor.putString("pass", pass)
-//            editor.apply()
+                        sharedPreferences = baseContext.getSharedPreferences(" MY_PREF", Context.MODE_PRIVATE)
+                        val editor = sharedPreferences.edit()
+                        editor.putString("name", name)
+                        editor.putString("pass", pass)
+                        editor.apply()
 
 
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+                        progress_bar.visibility = View.GONE
+                        btn1.isEnabled = true
+
+                        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+
+                    }else{
+                        Toast.makeText(this,"Login Failed, User is Blocked",Toast.LENGTH_SHORT).show()
+                        progress_bar.visibility = View.GONE
+                        btn1.isEnabled = true
+                    }
+
+
+
+                }else{
+                    Toast.makeText(this,"Login Failed, User not found",Toast.LENGTH_SHORT).show()
+                    progress_bar.visibility = View.GONE
+                    btn1.isEnabled = true
+
+                }
+
+
             } catch (e: JSONException) {
                 Log.e(TAG, e.toString())
                 e.printStackTrace()
+                progress_bar.visibility = View.GONE
+                btn1.isEnabled = true
+
             }
         }, { error ->
             error.printStackTrace()
@@ -95,13 +118,18 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
             username.text.clear()
             password.text.clear()
-            progress_bar.visibility = View.INVISIBLE
+            progress_bar.visibility = View.GONE
+            btn1.isEnabled = true
+
         })
             requestQueue?.add(request)
     }catch (e:Error){
         Log.e(TAG,e.toString())
+
     }
 
-        progress_bar.visibility = View.GONE
+
+
+
     }
 }

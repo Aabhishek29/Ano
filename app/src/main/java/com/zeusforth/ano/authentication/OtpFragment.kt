@@ -1,6 +1,8 @@
 package com.zeusforth.ano.authentication
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -47,6 +49,7 @@ class OtpFragment : Fragment() {
     private lateinit var otp_4:EditText
     private lateinit var otp_5:EditText
     private lateinit var otp_6:EditText
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -155,7 +158,14 @@ class OtpFragment : Fragment() {
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.i("auth", "onsuccessful:  before")
-                        val toast = Toast.makeText(activity, "Successfully signed in", Toast.LENGTH_SHORT)
+
+                        sharedPreferences = activity!!.baseContext.getSharedPreferences(" MY_PREF", Context.MODE_PRIVATE)
+                        val editor = sharedPreferences.edit()
+                        editor.putString("name", username)
+                        editor.putString("pass", password)
+                        editor.apply()
+
+                        val toast = Toast.makeText(activity, "Account successfully created!", Toast.LENGTH_SHORT)
                         toast.show()
 
                         val intent = Intent(activity, HomeActivity::class.java)

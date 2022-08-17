@@ -36,5 +36,13 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior">
         />
 
 </androidx.core.widget.NestedScrollView>
+    <Button
+        android:id="@+id/camera_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open Camera"
+        android:textColor="@color/white"
+        android:layout_gravity="bottom|center_horizontal"
+        />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

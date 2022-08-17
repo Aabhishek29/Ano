@@ -127,12 +127,12 @@
             </LinearLayout>
             <ProgressBar
                 android:id="@+id/progress_bar"
-                android:indeterminateTint="@color/secondary_light"
+                android:indeterminateTint="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:visibility="invisible"
-                android:indeterminate="false"
+                android:visibility="gone"
+                android:indeterminate="true"
                 />
         </FrameLayout>
 
