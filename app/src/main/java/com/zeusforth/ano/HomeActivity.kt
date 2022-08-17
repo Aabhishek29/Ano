@@ -14,8 +14,10 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.navigation.NavigationView
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.face.FaceDetection
 import com.google.mlkit.vision.face.FaceDetectorOptions
@@ -25,6 +27,8 @@ import com.zeusforth.ano.authentication.LoginActivity
 class HomeActivity : AppCompatActivity()  {
     private val TAG = "HomeActivity";
     private lateinit var topAppBar:MaterialToolbar
+    private lateinit var drawerLayout:DrawerLayout
+    private lateinit var navigationView:NavigationView
 
 
     var cameraButton: Button? = null
@@ -41,13 +45,23 @@ class HomeActivity : AppCompatActivity()  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         topAppBar = findViewById(R.id.topAppBar)
-
-
+        drawerLayout =findViewById(R.id.drawerLayout)
+        navigationView = findViewById(R.id.nav)
 
 
         topAppBar.setNavigationOnClickListener {
             // Handle navigation icon press
+            drawerLayout.open()
         }
+
+        navigationView.setNavigationItemSelectedListener { menuItem ->
+            // Handle menu item selected
+            menuItem.isChecked = true
+            drawerLayout.close()
+            true
+        }
+
+
 
         topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {

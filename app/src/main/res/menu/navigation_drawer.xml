@@ -7,15 +7,15 @@
         <menu>
             <item
                 android:id="@+id/inbox_item"
-                android:title="inbox"
+                android:title="Setting"
                 android:checkable="true"/>
             <item
                 android:id="@+id/outbox_item"
-                android:title="outbox"
+                android:title="Profile"
                 android:checkable="true"/>
             <item
                 android:id="@+id/favourites_item"
-                android:title="favourites_title"
+                android:title="About"
                 android:checkable="true"/>
         </menu>
     </item>
