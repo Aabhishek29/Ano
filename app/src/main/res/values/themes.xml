@@ -57,9 +57,9 @@
 
 
 <!--    for navigation drawer-->
-    <style name="Theme.Drawer" parent="Theme.Material3.Dark">
+    <style name="Theme.Drawer" parent="Theme.Material3.Dark.NoActionBar">
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="actionBarTheme">@style/Theme.MaterialComponents.NoActionBar</item>
+<!--        <item name="actionBarTheme">@style/Theme.MaterialComponents.NoActionBar</item>-->
         <!-- enable window content transitions -->
         <item name="android:windowActivityTransitions">true</item>
 

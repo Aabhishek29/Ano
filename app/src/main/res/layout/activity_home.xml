@@ -15,15 +15,15 @@
     android:fitsSystemWindows="true"
     >
 
-<com.google.android.material.appbar.AppBarLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 <com.google.android.material.appbar.MaterialToolbar
     android:id="@+id/topAppBar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    app:title="Chat Window"
+    app:title="Ano"
     app:menu="@menu/signout"
     app:navigationIcon="@drawable/ic_baseline_settings_24" />
 

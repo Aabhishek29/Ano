@@ -9,6 +9,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.Menu
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -47,14 +48,17 @@ class HomeActivity : AppCompatActivity()  {
         topAppBar = findViewById(R.id.topAppBar)
         drawerLayout =findViewById(R.id.drawerLayout)
         navigationView = findViewById(R.id.nav)
-
+        setSupportActionBar(topAppBar)
 
         topAppBar.setNavigationOnClickListener {
             // Handle navigation icon press
             drawerLayout.open()
         }
 
+
+
         navigationView.setNavigationItemSelectedListener { menuItem ->
+
             // Handle menu item selected
             menuItem.isChecked = true
             drawerLayout.close()
@@ -81,14 +85,10 @@ class HomeActivity : AppCompatActivity()  {
                     finish()
                     true
                 }
+
                 else -> false
             }
         }
-
-        topAppBar.setNavigationOnClickListener({
-
-
-        })
 
 
         //Face detection
@@ -135,6 +135,11 @@ class HomeActivity : AppCompatActivity()  {
         })
 
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.signout,menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
 
