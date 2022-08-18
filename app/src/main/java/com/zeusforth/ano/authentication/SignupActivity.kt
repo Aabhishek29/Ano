@@ -29,7 +29,7 @@ class SignupActivity : AppCompatActivity() {
         val window: Window = getWindow()
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.setStatusBarColor(ContextCompat.getColor(baseContext , R.color.primary))
+        window.statusBarColor = ContextCompat.getColor(baseContext , R.color.primary)
 
         // To connect the fragment with activity
         if (savedInstanceState == null) {

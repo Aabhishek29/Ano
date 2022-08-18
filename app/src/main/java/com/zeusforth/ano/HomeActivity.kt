@@ -17,12 +17,17 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.add
+import androidx.fragment.app.commit
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.face.FaceDetection
 import com.google.mlkit.vision.face.FaceDetectorOptions
 import com.zeusforth.ano.authentication.LoginActivity
+import com.zeusforth.ano.authentication.OtpFragment
+import com.zeusforth.ano.dashboard.*
 
 
 class HomeActivity : AppCompatActivity()  {
@@ -49,6 +54,9 @@ class HomeActivity : AppCompatActivity()  {
         drawerLayout =findViewById(R.id.drawerLayout)
         navigationView = findViewById(R.id.nav)
         setSupportActionBar(topAppBar)
+//        val color = SurfaceColors.SURFACE_2.getColor(this)
+//        window.statusBarColor = color // Set color of system statusBar same as ActionBar
+//        window.navigationBarColor = color // Set color of system navigationBar same as BottomNavigationView
 
         topAppBar.setNavigationOnClickListener {
             // Handle navigation icon press
@@ -62,6 +70,69 @@ class HomeActivity : AppCompatActivity()  {
             // Handle menu item selected
             menuItem.isChecked = true
             drawerLayout.close()
+
+            when(menuItem.title){
+
+                "Chat" -> {
+                    Log.i(TAG,"Chat")
+                    val chat_frag: Fragment = ChatFragment()
+                    this.supportFragmentManager.beginTransaction()
+                        .setReorderingAllowed(true).replace(R.id.fragment_dashboard,chat_frag)
+                        .commit()
+
+                }
+                "Contacts" -> {
+                    Log.i(TAG,"Contacts")
+
+                    val contacts_frag: Fragment = ContactsFragment()
+                    this.supportFragmentManager.beginTransaction()
+                        .setReorderingAllowed(true).replace(R.id.fragment_dashboard,contacts_frag)
+                        .commit()
+
+
+                }
+                "New Group" ->{
+                    Log.i(TAG,"New Group")
+                    val new_group_frag: Fragment = NewGroupFragment()
+                    this.supportFragmentManager.beginTransaction()
+                        .setReorderingAllowed(true).replace(R.id.fragment_dashboard,new_group_frag)
+                        .commit()
+
+
+                }
+                "Settings" ->{
+                    Log.i(TAG,"Settings")
+                    val settings_frag: Fragment = SettingFragment()
+                    this.supportFragmentManager.beginTransaction()
+                        .setReorderingAllowed(true).replace(R.id.fragment_dashboard,settings_frag)
+                        .commit()
+
+
+                }
+                "Share" ->{
+                    Log.i(TAG,"Share")
+                    val share_frag: Fragment = ShareFragment()
+                    this.supportFragmentManager.beginTransaction()
+                        .setReorderingAllowed(true).replace(R.id.fragment_dashboard,share_frag)
+                        .commit()
+
+
+                }
+                "About" -> {
+                    Log.i(TAG,"About")
+                    val about_frag: Fragment = AboutFragment()
+                    this.supportFragmentManager.beginTransaction()
+                        .setReorderingAllowed(true).replace(R.id.fragment_dashboard,about_frag)
+                        .commit()
+
+
+                }
+                else -> {
+                    Toast.makeText(this,"No item selected", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+
             true
         }
 
@@ -133,6 +204,19 @@ class HomeActivity : AppCompatActivity()  {
 
             }
         })
+
+
+        // To connect the fragment with activity
+        if (savedInstanceState == null) {
+            supportFragmentManager.commit {
+                setCustomAnimations(
+                    R.anim.slide_in, R.anim.fadeout,
+                    R.anim.fadein,R.anim.slide_out
+                )
+                setReorderingAllowed(true)
+                add<ChatFragment>(R.id.fragment_dashboard)
+            }
+        }
 
 
     }

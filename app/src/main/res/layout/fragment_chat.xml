@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary"
+    tools:context=".dashboard.ChatFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+        <!-- Scrollable content -->
+        <TextView
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/long_text"
+            android:lineSpacingExtra="20dp"
+            android:textSize="16sp"
+            android:textColor="@color/yellow"
+            />
+
+    </androidx.core.widget.NestedScrollView>
+    <Button
+        android:id="@+id/camera_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open Camera"
+        android:textColor="@color/white"
+        android:layout_gravity="bottom|center_horizontal"
+        />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

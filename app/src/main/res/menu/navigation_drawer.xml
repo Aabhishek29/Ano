@@ -1,22 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/main_item"
-        android:title="Menu">
+        android:title="Menu"
+        >
         <menu>
+
             <item
-                android:id="@+id/inbox_item"
-                android:title="Setting"
-                android:checkable="true"/>
+                android:id="@+id/chat_item"
+                android:title="Chat"
+                android:checkable="true"
+                android:icon="@drawable/ic_baseline_chat_bubble_outline_24"/>
             <item
-                android:id="@+id/outbox_item"
-                android:title="Profile"
-                android:checkable="true"/>
+                android:id="@+id/contact_item"
+                android:title="Contacts"
+                android:checkable="true"
+                android:icon="@drawable/ic_baseline_person_outline_24"/>
+
+            <item
+                android:id="@+id/profile_item"
+                android:title="New Group"
+                android:checkable="true"
+                android:icon="@drawable/ic_baseline_people_24"/>
+
+            <item
+                android:id="@+id/setting_item"
+                android:title="Settings"
+                android:checkable="true"
+                android:icon="@drawable/ic_baseline_settings_24"/>
+
+
+        </menu>
+    </item>
+    <item
+        android:id="@+id/main_item2"
+        android:title="Feature"
+        >
+        <menu>
+
+            <item
+                android:id="@+id/share_item"
+                android:title="Share"
+                android:checkable="true"
+                android:icon="@drawable/ic_baseline_share_24"/>
             <item
                 android:id="@+id/favourites_item"
                 android:title="About"
-                android:checkable="true"/>
+                android:checkable="true"
+                android:icon="@drawable/ic_baseline_info_24"/>
         </menu>
     </item>
 
