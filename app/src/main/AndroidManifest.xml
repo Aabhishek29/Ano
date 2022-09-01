@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.zeusforth.ano">
 
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <queries>
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
@@ -15,9 +18,9 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:resizeableActivity="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:resizeableActivity="true"
         android:theme="@style/Theme.Ano"
         tools:targetApi="31">
 <!--        <activity-->
@@ -26,6 +29,11 @@
 <!--        <activity-->
 <!--            android:name=".authentication.SignupActivity"-->
 <!--            android:theme="@style/Theme.Ano" />-->
+
+        <activity
+            android:name=".authentication.SignupActivity"
+            android:theme="@style/Theme.Ano"/>
+        android:exported="false" />
         <activity
             android:name=".authentication.LoginActivity"
             android:exported="false"
@@ -48,6 +56,12 @@
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
             android:value="face" />
+
     </application>
+    <queries>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+    </queries>
 
 </manifest>

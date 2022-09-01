@@ -2,9 +2,11 @@ package com.zeusforth.ano
 
 import LCOFaceDetection
 import ResultDialog
+import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
@@ -15,6 +17,8 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
@@ -26,7 +30,6 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.face.FaceDetection
 import com.google.mlkit.vision.face.FaceDetectorOptions
 import com.zeusforth.ano.authentication.LoginActivity
-import com.zeusforth.ano.authentication.OtpFragment
 import com.zeusforth.ano.dashboard.*
 
 
@@ -35,6 +38,11 @@ class HomeActivity : AppCompatActivity()  {
     private lateinit var topAppBar:MaterialToolbar
     private lateinit var drawerLayout:DrawerLayout
     private lateinit var navigationView:NavigationView
+    private val PERMISSION_REQUEST_CODE = 0X0001
+
+    private val permissions = arrayOf(
+        Manifest.permission.READ_CONTACTS
+    )
 
 
     var cameraButton: Button? = null
@@ -43,6 +51,7 @@ class HomeActivity : AppCompatActivity()  {
     // need to declare an integer and initialize it to some
     // value .
     var image: InputImage? = null
+
 
 
 
@@ -62,6 +71,8 @@ class HomeActivity : AppCompatActivity()  {
             // Handle navigation icon press
             drawerLayout.open()
         }
+
+        checkSelfPermissions();
 
 
 
@@ -221,10 +232,59 @@ class HomeActivity : AppCompatActivity()  {
 
     }
 
+
+
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.signout,menu)
         return super.onCreateOptionsMenu(menu)
     }
+
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        results: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, results)
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            var deniedCount = 0
+            for (i in results.indices) {
+                if (results[i] == PackageManager.PERMISSION_DENIED) {
+                    deniedCount++
+                }
+            }
+            if (deniedCount == 0) {
+                Toast.makeText(this,"All permissions are granted!",Toast.LENGTH_SHORT).show();
+
+            } else {
+                finish()
+            }
+        }
+    }
+
+    private fun checkSelfPermissions(): Boolean {
+        val needList: MutableList<String> = ArrayList()
+        for (perm in permissions) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    perm
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                needList.add(perm)
+            }
+        }
+        if (needList.isNotEmpty()) {
+            ActivityCompat.requestPermissions(
+                this,
+                needList.toTypedArray(),
+                PERMISSION_REQUEST_CODE
+            )
+            return false
+        }
+        return true
+    }
+
 
 
     // If you want to configure your face detection model
