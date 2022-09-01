@@ -64,4 +64,8 @@ dependencies {
     implementation("androidx.compose.material3:material3-window-size-class:1.0.0-alpha15")
     implementation("androidx.drawerlayout:drawerlayout:1.1.1")
 
+//    Permission lib
+    implementation "com.karumi:dexter:6.2.3"
+
+
 }
