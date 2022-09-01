@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/users_chat_layout_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_gravity="end"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp">
+
+        <TextView
+            android:id="@+id/users_time_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="22/12/2023"
+            android:layout_marginHorizontal="10dp"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/users_message_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:background="@drawable/user_chat_background"
+            android:text="message" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/recivers_chat_layout_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp">
+
+        <TextView
+            android:id="@+id/recivers_message_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:background="@drawable/recivers_chat_background"
+            android:text="message" />
+
+        <TextView
+            android:id="@+id/recivers_time_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="22/12/2023"
+            android:layout_marginHorizontal="10dp"
+            android:textSize="12sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

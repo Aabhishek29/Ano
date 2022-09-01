@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chat_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:itemCount="5"
+        tools:listitem="@layout/recycler_chat_layout"
+        />
+
+<!--    <ProgressBar-->
+<!--        android:id="@+id/chat_progress_bar"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center_vertical"-->
+<!--        android:layout_marginHorizontal="180dp"-->
+<!--        android:indeterminate="true"-->
+<!--        android:progressTint="@color/secondary"-->
+<!--        android:secondaryProgressTint="@color/secondary_dark"-->
+<!--        android:visibility="visible"-->
+<!--        tools:ignore="MissingConstraints" />-->
+
+    <LinearLayout
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom">
+
+        <!--            <ImageButton-->
+        <!--                android:id="@+id/addattachment"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_margin="5dp"-->
+        <!--                android:background="@drawable/round_sending_btn"-->
+        <!--                android:padding="10dp"-->
+        <!--                android:src="@drawable/ic_baseline_attachment_24"-->
+        <!--                android:contentDescription="@string/todo" />-->
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textarea"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:hint="Type Here"
+            android:padding="10sp"
+            android:layout_weight=".65"
+            android:textColorHint="@color/white"
+            android:background="@drawable/edit_text_view_background"
+            />
+
+
+        <ImageButton
+            android:id="@+id/sendBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn_background"
+            android:padding="10dp"
+            android:src="@drawable/ic_baseline_send_24"/>
+
+    </LinearLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
