@@ -39,7 +39,8 @@ dependencies {
 
     def fragment_version = "1.5.0"
 
-    // dependences for fragment
+    // dependencies for fragment mentioned below for both java and kotlin
+
     // Java language implementation
     implementation "androidx.fragment:fragment:$fragment_version"
     // Kotlin
@@ -63,5 +64,9 @@ dependencies {
     implementation("androidx.compose.material3:material3:1.0.0-alpha15")
     implementation("androidx.compose.material3:material3-window-size-class:1.0.0-alpha15")
     implementation("androidx.drawerlayout:drawerlayout:1.1.1")
+
+
+    // graphql dependency
+    implementation("com.apollographql.apollo3:apollo-runtime:3.5.0")
 
 }
