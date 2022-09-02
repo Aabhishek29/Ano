@@ -1,33 +1,22 @@
 package com.zeusforth.ano.dashboard
 
-import android.Manifest
-import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
-import android.content.Intent
-import android.content.SharedPreferences
 import android.database.Cursor
-import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.ContactsContract
-import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
-import android.widget.Toast
-import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.karumi.dexter.Dexter
-import com.karumi.dexter.MultiplePermissionsReport
-import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.listener.PermissionRequest
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.zeusforth.ano.R
 import com.zeusforth.ano.contacts.ContactRVAdapter
 import com.zeusforth.ano.contacts.ContactsModal
+import java.util.concurrent.Executors
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -86,11 +75,29 @@ class ContactsFragment : Fragment() {
         // calling a method to request permissions.
 //        requestPermissionsForContacts(frag_context)
 
-        getContacts(frag_context);
+        fetchContactsInBackground(frag_context)
+
+//        getContacts(frag_context);
 
 
         // Inflate the layout for this fragment
         return root;
+    }
+
+    private fun fetchContactsInBackground(frag_context: Context) {
+        val executor = Executors.newSingleThreadExecutor()
+        val handler = Handler(Looper.getMainLooper())
+        executor.execute {
+         getContacts(frag_context)
+
+            handler.post {
+                // on below line we are hiding our progress bar and notifying our adapter class.
+                loadingPB!!.visibility = View.GONE
+                contactRVAdapter!!.notifyDataSetChanged()
+                saveContactsOnDeviceStorage(contactsModalArrayList)
+            }
+        }
+
     }
 
     private fun prepareContactRV(context:Context) {
@@ -149,8 +156,12 @@ class ContactsFragment : Fragment() {
         // this method is use to read contact from users device.
         // on below line we are creating a string variables for
         // our contact id and display name.
+
         var contactId: String
         var displayName: String
+
+
+
         // on below line we are calling our content resolver for getting contacts
         val cursor: Cursor = context.contentResolver.query(
             ContactsContract.Contacts.CONTENT_URI,
@@ -196,26 +207,26 @@ class ContactsFragment : Fragment() {
         }
         // on below line we are closing our cursor.
         cursor.close()
-        // on below line we are hiding our progress bar and notifying our adapter class.
-        loadingPB!!.visibility = View.GONE
-        contactRVAdapter!!.notifyDataSetChanged()
-        saveContactsOnDeviceStorage(contactsModalArrayList)
+
     }
 
     private fun saveContactsOnDeviceStorage(contactsModalArrayList: ArrayList<ContactsModal>?) {
 
 
 
-//        val sharedPref = activity?.getSharedPreferences(
-//            getString(R.string.ano_contacts_file), Context.MODE_PRIVATE)?: return
-//        with (sharedPref.edit()) {
-//
-//
-//            putStringSet()
-//
-//            putInt(getString(R.string.saved_high_score_key), newHighScore)
-//            apply()
-//        }
+        val sharedPref = activity?.getSharedPreferences(
+            getString(R.string.ano_contacts_file), Context.MODE_PRIVATE)?: return
+        with (sharedPref.edit()) {
+
+            if (contactsModalArrayList != null) {
+                for(contact in contactsModalArrayList){
+                    putString(contact.contactNumber,contact.userName)
+
+                }
+
+            }
+            apply()
+        }
 
 
 

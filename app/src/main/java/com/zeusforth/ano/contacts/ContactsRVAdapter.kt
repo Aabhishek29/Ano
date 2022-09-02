@@ -3,13 +3,16 @@ package com.zeusforth.ano.contacts
 
 import com.zeusforth.ano.R
 import android.content.Context
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.RecyclerView
-
+import com.zeusforth.ano.util.RandomColor
 
 
 internal class ContactRVAdapter     // creating a constructor
@@ -37,6 +40,11 @@ internal class ContactRVAdapter     // creating a constructor
         val modal = contactsModalArrayList[position]
         // on below line we are setting data to our text view.
         holder.contactTV.text = modal.userName
+        val color = RandomColor().getColor()
+//        holder.contactIV.setBackgroundColor(color)
+        ImageViewCompat.setImageTintList(holder.contactIV, ColorStateList.valueOf(color))
+        holder.invite_btn.setTextColor(color)
+
 
 
 
@@ -55,16 +63,22 @@ internal class ContactRVAdapter     // creating a constructor
         return contactsModalArrayList.size
     }
 
+
+
+//    View Holder
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // on below line creating a variable
         // for our image view and text view.
-        private val contactIV: ImageView
+        val contactIV: ImageView
         val contactTV: TextView
+        val invite_btn:Button
 
         init {
             // initializing our image view and text view.
             contactIV = itemView.findViewById(R.id.idIVContact)
             contactTV = itemView.findViewById(R.id.idTVContactName)
+            invite_btn = itemView.findViewById(R.id.invite_btn)
         }
     }
 }
