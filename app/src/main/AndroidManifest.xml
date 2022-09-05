@@ -40,17 +40,21 @@
             android:theme="@style/Theme.Ano" />
         <activity
             android:name=".HomeActivity"
-            android:exported="false"
-            android:theme="@style/Theme.Drawer" />
-        <activity
-            android:name=".chatscreens.ChatActivity"
+            android:screenOrientation="portrait"
             android:exported="true"
-            android:theme="@style/Theme.Ano">
+            android:theme="@style/Theme.Drawer" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".chatscreens.ChatActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Ano">
+
         </activity>
 
         <meta-data

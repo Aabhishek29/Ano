@@ -27,7 +27,7 @@
     android:layout_height="?attr/actionBarSize"
     app:title="Ano"
     app:menu="@menu/signout"
-    app:navigationIcon="@drawable/ic_baseline_settings_24" />
+    app:navigationIcon="@drawable/ic_baseline_menu_24" />
 
 </com.google.android.material.appbar.AppBarLayout>
 

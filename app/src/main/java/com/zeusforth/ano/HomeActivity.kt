@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.drawerlayout.widget.DrawerLayout.DrawerListener
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.add
@@ -70,13 +71,21 @@ class HomeActivity : AppCompatActivity()  {
         topAppBar.setNavigationOnClickListener {
             // Handle navigation icon press
             drawerLayout.open()
+            topAppBar.setNavigationIcon(R.drawable.ic_baseline_menu_open_24)
         }
+
+
 
         checkSelfPermissions();
 
 
 
+
         navigationView.setNavigationItemSelectedListener { menuItem ->
+
+            if (menuItem.title!= "Chat"){
+                navigationView.menu.getItem(0).subMenu.getItem(0).isChecked = false
+            }
 
             // Handle menu item selected
             menuItem.isChecked = true
@@ -86,6 +95,7 @@ class HomeActivity : AppCompatActivity()  {
 
                 "Chat" -> {
                     Log.i(TAG,"Chat")
+                    topAppBar.title = "Ano"
                     val chat_frag: Fragment = ChatFragment()
                     this.supportFragmentManager.beginTransaction()
                         .setReorderingAllowed(true).replace(R.id.fragment_dashboard,chat_frag)
@@ -94,6 +104,7 @@ class HomeActivity : AppCompatActivity()  {
                 }
                 "Contacts" -> {
                     Log.i(TAG,"Contacts")
+                    topAppBar.title = menuItem.title
 
                     val contacts_frag: Fragment = ContactsFragment()
                     this.supportFragmentManager.beginTransaction()
@@ -104,6 +115,7 @@ class HomeActivity : AppCompatActivity()  {
                 }
                 "New Group" ->{
                     Log.i(TAG,"New Group")
+                    topAppBar.title = menuItem.title
                     val new_group_frag: Fragment = NewGroupFragment()
                     this.supportFragmentManager.beginTransaction()
                         .setReorderingAllowed(true).replace(R.id.fragment_dashboard,new_group_frag)
@@ -113,6 +125,7 @@ class HomeActivity : AppCompatActivity()  {
                 }
                 "Settings" ->{
                     Log.i(TAG,"Settings")
+                    topAppBar.title = menuItem.title
                     val settings_frag: Fragment = SettingFragment()
                     this.supportFragmentManager.beginTransaction()
                         .setReorderingAllowed(true).replace(R.id.fragment_dashboard,settings_frag)
@@ -122,6 +135,7 @@ class HomeActivity : AppCompatActivity()  {
                 }
                 "Share" ->{
                     Log.i(TAG,"Share")
+                    topAppBar.title = menuItem.title
                     val share_frag: Fragment = ShareFragment()
                     this.supportFragmentManager.beginTransaction()
                         .setReorderingAllowed(true).replace(R.id.fragment_dashboard,share_frag)
@@ -131,6 +145,7 @@ class HomeActivity : AppCompatActivity()  {
                 }
                 "About" -> {
                     Log.i(TAG,"About")
+                    topAppBar.title = menuItem.title
                     val about_frag: Fragment = AboutFragment()
                     this.supportFragmentManager.beginTransaction()
                         .setReorderingAllowed(true).replace(R.id.fragment_dashboard,about_frag)
@@ -139,6 +154,7 @@ class HomeActivity : AppCompatActivity()  {
 
                 }
                 else -> {
+                    topAppBar.title = "Ano"
                     Toast.makeText(this,"No item selected", Toast.LENGTH_SHORT).show()
                 }
 
@@ -148,6 +164,7 @@ class HomeActivity : AppCompatActivity()  {
         }
 
 
+//        navigationView.menu.getItem(0).subMenu.getItem(0).isChecked = true
 
         topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
@@ -171,6 +188,21 @@ class HomeActivity : AppCompatActivity()  {
                 else -> false
             }
         }
+        drawerLayout.addDrawerListener(object :
+            DrawerListener {
+            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+            }
+
+            override fun onDrawerOpened(drawerView: View) {
+            }
+
+            override fun onDrawerClosed(drawerView: View) {
+                topAppBar.setNavigationIcon(R.drawable.ic_baseline_menu_24)
+            }
+
+            override fun onDrawerStateChanged(newState: Int) {
+            }
+        })
 
 
         //Face detection

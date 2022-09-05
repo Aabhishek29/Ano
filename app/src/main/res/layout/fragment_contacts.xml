@@ -3,15 +3,176 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dashboard.ContactsFragment">
-
-  <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/idRVContacts"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".dashboard.ContactsFragment"
+    android:background="@color/primary"
+   >
+  <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      >
+
+    <LinearLayout
+        android:id="@+id/ly_contact_frag_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        >
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_new_chat"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          app:cardElevation="10dp"
+          android:backgroundTint="@color/primary_dark"
+
+        >
+        <LinearLayout
+            android:id="@+id/ly_new_chat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:background="@drawable/contact_frag_bg"
+            >
+
+
+          <ImageView
+              android:id="@+id/iv_new_chat"
+              android:layout_width="50dp"
+              android:layout_height="50dp"
+              android:padding="5dp"
+              android:layout_gravity="center"
+              android:src="@drawable/new_chat_white"
+              app:tint="@color/white" />
+          <TextView
+              android:id="@+id/tv_new_chat"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:text="New Chat"
+              android:textSize="14sp"
+              android:textColor="@color/yellow"
+              android:textStyle="bold"
+              android:layout_marginBottom="10dp"
+              />
+
+        </LinearLayout>
+
+
+      </androidx.cardview.widget.CardView>
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_new_group"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          app:cardElevation="10dp"
+          android:backgroundTint="@color/primary_dark"
+
+          >
+        <LinearLayout
+            android:id="@+id/ly_new_group"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:background="@color/primary_dark"
+            >
+
+
+          <ImageView
+              android:id="@+id/iv_new_group"
+              android:layout_width="50dp"
+              android:layout_height="50dp"
+              android:padding="5dp"
+              android:layout_gravity="center"
+              android:src="@drawable/new_group_white"
+
+              />
+          <TextView
+              android:id="@+id/tv_new_group"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:text="New Group"
+              android:textColor="@color/white"
+              android:textSize="14sp"
+              android:textStyle="bold"
+              android:layout_marginBottom="10dp"
+
+              />
+
+        </LinearLayout>
+
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_global_search"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          app:cardElevation="10dp"
+          android:backgroundTint="@color/primary_dark"
+
+          >
+        <LinearLayout
+            android:id="@+id/ly_global_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:background="@color/primary_dark"
+            >
+
+
+          <ImageView
+              android:id="@+id/iv_global_search"
+              android:layout_width="50dp"
+              android:layout_height="50dp"
+              android:padding="5dp"
+              android:layout_gravity="center"
+              android:src="@drawable/global_white"
+              />
+          <TextView
+              android:id="@+id/tv_gobal_search"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:text="Global Search"
+              android:textSize="14sp"
+              android:textStyle="bold"
+              android:textColor="@color/white"
+              android:layout_marginBottom="10dp"
+
+              />
+
+        </LinearLayout>
+
+
+      </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+    <include
+        layout="@layout/search_bar_contact_frag"
 
 
       />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/idRVContacts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/contacts_item_list"
+        android:background="@color/primary"
+
+        />
+
+  </LinearLayout>
+
+
     <ProgressBar
         android:id="@+id/idPBLoading"
         android:layout_width="wrap_content"

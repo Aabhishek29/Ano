@@ -1,30 +1,41 @@
 package com.zeusforth.ano.contacts
 
 
-import com.zeusforth.ano.R
 import android.content.Context
+import android.content.Intent
 import android.content.res.ColorStateList
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.LinearLayout
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.zeusforth.ano.R
 import com.zeusforth.ano.util.RandomColor
 
 
-internal class ContactRVAdapter     // creating a constructor
-    (// creating variables for context and array list.
-    private val context: Context, private var contactsModalArrayList: ArrayList<ContactsModal>
-) :
-    RecyclerView.Adapter<ContactRVAdapter.ViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        // passing our layout file for displaying our card item
-        return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.contacts_item_list, parent, false)
-        )
+class ContactRVAdapter(
+    context: Context,
+    contactsModalArrayList: ArrayList<ContactsModal>
+):RecyclerView.Adapter<ContactsViewHolder>()
+     {
+         var  context: Context
+         private var contactsModalArrayList: ArrayList<ContactsModal>
+         private val playstoreurl:String =  "https://play.google.com/store/apps/details?id=com.roomkhoj"
+
+
+         init {
+             this.context = context
+             this.contactsModalArrayList = contactsModalArrayList
+
+         }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsViewHolder {
+        val view:View =  LayoutInflater.from(parent.context).inflate(R.layout.contacts_item_list, parent, false)
+
+       return ContactsViewHolder(view)
     }
 
     // below method is use for filtering data in our array list
@@ -35,7 +46,7 @@ internal class ContactRVAdapter     // creating a constructor
         notifyDataSetChanged()
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ContactsViewHolder, position: Int) {
         // getting data from array list in our modal.
         val modal = contactsModalArrayList[position]
         // on below line we are setting data to our text view.
@@ -43,7 +54,22 @@ internal class ContactRVAdapter     // creating a constructor
         val color = RandomColor().getColor()
 //        holder.contactIV.setBackgroundColor(color)
         ImageViewCompat.setImageTintList(holder.contactIV, ColorStateList.valueOf(color))
-        holder.invite_btn.setTextColor(color)
+        holder.inviteBtn.setTextColor(color)
+
+        holder.inviteBtn.setOnClickListener(View.OnClickListener {
+            sharePlaystorePage(playstoreurl);
+
+        })
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -63,22 +89,18 @@ internal class ContactRVAdapter     // creating a constructor
         return contactsModalArrayList.size
     }
 
+         private fun sharePlaystorePage(playstoreurl: String) {
+             val sendIntent = Intent()
+             sendIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+             sendIntent.action = Intent.ACTION_SEND
+             sendIntent.putExtra(
+                 Intent.EXTRA_TEXT,
+                 "Hey check out this app at: $playstoreurl"
+             )
+             sendIntent.type = "text/plain"
+             startActivity(context,sendIntent, Bundle.EMPTY)
+         }
 
 
-//    View Holder
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // on below line creating a variable
-        // for our image view and text view.
-        val contactIV: ImageView
-        val contactTV: TextView
-        val invite_btn:Button
-
-        init {
-            // initializing our image view and text view.
-            contactIV = itemView.findViewById(R.id.idIVContact)
-            contactTV = itemView.findViewById(R.id.idTVContactName)
-            invite_btn = itemView.findViewById(R.id.invite_btn)
-        }
     }
-}
