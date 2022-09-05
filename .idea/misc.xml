@@ -3,7 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android projects shared/Ano/app/src/main/res/drawable/ic_baseline_send_24.xml" value="0.1665" />
         <entry key="..\:/Android projects shared/Ano/app/src/main/res/drawable/search_bg.xml" value="0.1425" />
+        <entry key="..\:/Android projects shared/Ano/app/src/main/res/layout/activity_chat.xml" value="0.15" />
+        <entry key="..\:/Android projects shared/Ano/app/src/main/res/layout/chat_layout.xml" value="0.18" />
+        <entry key="..\:/Android projects shared/Ano/app/src/main/res/layout/chat_screen_text_box.xml" value="0.16" />
+        <entry key="..\:/Android projects shared/Ano/app/src/main/res/layout/contacts_item_list.xml" value="0.125" />
+        <entry key="..\:/Android projects shared/Ano/app/src/main/res/layout/fragment_contacts.xml" value="0.13072916666666667" />
+        <entry key="..\:/Android projects shared/Ano/app/src/main/res/layout/recycler_chat_layout.xml" value="0.11927083333333334" />
         <entry key="..\:/Android projects shared/Ano/app/src/main/res/layout/search_bar_contact_frag.xml" value="0.25" />
         <entry key="..\:/Users/abhi2/AndroidStudioProjects/Ano/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2145" />
         <entry key="..\:/Users/abhi2/AndroidStudioProjects/Ano/app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.2145" />

@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:visibility="visible"
+        android:visibility="gone"
         >
       <androidx.cardview.widget.CardView
           android:id="@+id/card_new_chat"
@@ -156,8 +156,9 @@
 
     </LinearLayout>
     <include
+        android:id="@+id/search_bar"
         layout="@layout/search_bar_contact_frag"
-
+        android:visibility="invisible"
 
       />
 

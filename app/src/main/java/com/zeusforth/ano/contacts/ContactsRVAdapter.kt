@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.zeusforth.ano.R
+import com.zeusforth.ano.chatscreens.ChatActivity
 import com.zeusforth.ano.util.RandomColor
 
 
@@ -51,6 +52,7 @@ class ContactRVAdapter(
         val modal = contactsModalArrayList[position]
         // on below line we are setting data to our text view.
         holder.contactTV.text = modal.userName
+        holder.contactNumberTV.text = modal.contactNumber
         val color = RandomColor().getColor()
 //        holder.contactIV.setBackgroundColor(color)
         ImageViewCompat.setImageTintList(holder.contactIV, ColorStateList.valueOf(color))
@@ -60,6 +62,15 @@ class ContactRVAdapter(
             sharePlaystorePage(playstoreurl);
 
         })
+
+        holder.itemView.setOnClickListener{
+
+            val i = Intent(context,ChatActivity().javaClass)
+            i.putExtra("name", modal.userName)
+            i.putExtra("contact", modal.contactNumber)
+
+            context.startActivity(i)
+        }
 
 
 

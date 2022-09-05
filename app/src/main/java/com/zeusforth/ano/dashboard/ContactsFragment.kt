@@ -7,13 +7,11 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.ContactsContract
+import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.core.graphics.toColor
 import androidx.fragment.app.Fragment
@@ -30,11 +28,8 @@ import java.util.concurrent.Executors
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ContactsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
+
 class ContactsFragment : Fragment() {
     private lateinit var root: View
     private  lateinit var frag_context: Context
@@ -62,6 +57,8 @@ class ContactsFragment : Fragment() {
     private lateinit var tvNewChat:TextView
     private lateinit var tvNewGroup:TextView
     private lateinit var tvGlobalSearch:TextView
+    private lateinit var searchBar:View
+    private lateinit var searchBarEditText:EditText
     private var chatType:String ="New Chat"
 
 
@@ -105,6 +102,9 @@ class ContactsFragment : Fragment() {
         tvNewGroup = root.findViewById(R.id.tv_new_group)
         tvGlobalSearch = root.findViewById(R.id.tv_gobal_search)
 
+        searchBar = root.findViewById(R.id.search_bar)
+        searchBarEditText = searchBar.findViewById(R.id.search_bar_edit_text)
+
         cardNewChat.setOnClickListener {
             chatType = "New Chat"
             checkChatType()
@@ -143,8 +143,9 @@ class ContactsFragment : Fragment() {
     }
 
 
-    fun checkChatType(){
-        var yellow_color : Int = Color.parseColor("#FFC107")
+    private fun checkChatType(){
+
+        val yellow_color : Int = Color.parseColor("#FFC107")
         when(chatType){
 
             "New Chat" -> {
@@ -203,6 +204,7 @@ class ContactsFragment : Fragment() {
                 loadingPB!!.visibility = View.GONE
                 contactRVAdapter!!.notifyDataSetChanged()
                 ly_contact_frag_header.visibility = View.VISIBLE
+                searchBar.visibility = View.VISIBLE
                 saveContactsOnDeviceStorage(contactsModalArrayList)
             }
         }
