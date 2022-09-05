@@ -4,32 +4,57 @@
     android:id="@+id/idRLContact"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="3dp"
+    android:layout_margin="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeActivity">
 
     <!--image view for displaying the first letter of contact-->
     <ImageView
         android:id="@+id/idIVContact"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_margin="8dp"
         android:padding="10dp"
         android:background="@drawable/circle_bg"
         android:src="@drawable/ic_baseline_person_24"
-        app:tint="@color/yellow"/>
+        app:tint="@color/white"/>
 
     <!--text view for displaying user name-->
     <TextView
         android:id="@+id/idTVContactName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
         android:layout_toRightOf="@id/idIVContact"
         android:text="Contact Name"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
+    <TextView
+        android:id="@+id/contactNumberTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+91123456789"
+        android:textSize="13sp"
+        android:layout_below="@id/idTVContactName"
+        android:layout_toRightOf="@id/idIVContact"
+        android:layout_marginStart="8dp"/>
+
+    <Button
+        android:id="@+id/invite_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="5dp"
+        android:alpha="0.8"
+        android:backgroundTint="@color/primary_light"
+        android:padding="0dp"
+        android:text="Invite"
+        android:textColor="@color/white"
+        android:textSize="16dp" />
+
+
 
 </RelativeLayout>

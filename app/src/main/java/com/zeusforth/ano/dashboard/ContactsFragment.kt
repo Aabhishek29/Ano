@@ -1,33 +1,26 @@
 package com.zeusforth.ano.dashboard
 
-import android.Manifest
-import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
-import android.content.Intent
-import android.content.SharedPreferences
 import android.database.Cursor
-import android.net.Uri
+import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.ContactsContract
-import android.provider.Settings
+import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import android.widget.Toast
-import androidx.core.app.ActivityCompat.startActivityForResult
+import android.widget.*
+import androidx.cardview.widget.CardView
+import androidx.core.graphics.toColor
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.karumi.dexter.Dexter
-import com.karumi.dexter.MultiplePermissionsReport
-import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.listener.PermissionRequest
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.zeusforth.ano.R
 import com.zeusforth.ano.contacts.ContactRVAdapter
 import com.zeusforth.ano.contacts.ContactsModal
+import java.util.concurrent.Executors
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -35,11 +28,8 @@ import com.zeusforth.ano.contacts.ContactsModal
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ContactsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
+
 class ContactsFragment : Fragment() {
     private lateinit var root: View
     private  lateinit var frag_context: Context
@@ -53,6 +43,24 @@ class ContactsFragment : Fragment() {
     private var contactRV: RecyclerView? = null
     private var contactRVAdapter: ContactRVAdapter? = null
     private var loadingPB: ProgressBar? = null
+
+    private lateinit var cardNewChat: CardView
+    private lateinit var cardNewGroup: CardView
+    private lateinit var cardGlobalSearch: CardView
+    private lateinit var lyNewChat: LinearLayout
+    private lateinit var lyNewGroup: LinearLayout
+    private lateinit var lyGlobalSearch: LinearLayout
+    private lateinit var ly_contact_frag_header: LinearLayout
+    private lateinit var ivNewChat:ImageView
+    private lateinit var ivNewGroup:ImageView
+    private lateinit var ivGlobalSearch:ImageView
+    private lateinit var tvNewChat:TextView
+    private lateinit var tvNewGroup:TextView
+    private lateinit var tvGlobalSearch:TextView
+    private lateinit var searchBar:View
+    private lateinit var searchBarEditText:EditText
+    private var chatType:String ="New Chat"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,8 +83,47 @@ class ContactsFragment : Fragment() {
         // on below line we are initializing our variables.
         // on below line we are initializing our variables.
         contactsModalArrayList = ArrayList()
-        contactRV = root.findViewById(com.zeusforth.ano.R.id.idRVContacts)
-        loadingPB = root.findViewById(com.zeusforth.ano.R.id.idPBLoading)
+        contactRV = root.findViewById(R.id.idRVContacts)
+        loadingPB = root.findViewById(R.id.idPBLoading)
+
+        cardNewChat = root.findViewById(R.id.card_new_chat)
+        cardNewGroup = root.findViewById(R.id.card_new_group)
+        cardGlobalSearch = root.findViewById(R.id.card_global_search)
+        lyNewChat = root.findViewById(R.id.ly_new_chat)
+        lyNewGroup = root.findViewById(R.id.ly_new_group)
+        lyGlobalSearch = root.findViewById(R.id.ly_global_search)
+        ly_contact_frag_header = root.findViewById(R.id.ly_contact_frag_header)
+
+        ivNewChat = root.findViewById(R.id.iv_new_chat)
+        ivNewGroup = root.findViewById(R.id.iv_new_group)
+        ivGlobalSearch = root.findViewById(R.id.iv_global_search)
+
+        tvNewChat = root.findViewById(R.id.tv_new_chat)
+        tvNewGroup = root.findViewById(R.id.tv_new_group)
+        tvGlobalSearch = root.findViewById(R.id.tv_gobal_search)
+
+        searchBar = root.findViewById(R.id.search_bar)
+        searchBarEditText = searchBar.findViewById(R.id.search_bar_edit_text)
+
+        cardNewChat.setOnClickListener {
+            chatType = "New Chat"
+            checkChatType()
+
+        }
+
+        cardNewGroup.setOnClickListener {
+
+            chatType = "New Group"
+            checkChatType()
+
+        }
+
+        cardGlobalSearch.setOnClickListener {
+
+            chatType = "Global Search"
+            checkChatType()
+
+        }
 
         // calling method to prepare our recycler view.
 
@@ -86,11 +133,82 @@ class ContactsFragment : Fragment() {
         // calling a method to request permissions.
 //        requestPermissionsForContacts(frag_context)
 
-        getContacts(frag_context);
+        fetchContactsInBackground(frag_context)
+
+//        getContacts(frag_context);
 
 
         // Inflate the layout for this fragment
         return root;
+    }
+
+
+    private fun checkChatType(){
+
+        val yellow_color : Int = Color.parseColor("#FFC107")
+        when(chatType){
+
+            "New Chat" -> {
+                lyNewChat.setBackgroundResource(R.drawable.new_chat_card_bg)
+                lyNewGroup.setBackgroundColor(R.color.black)
+                lyGlobalSearch.setBackgroundColor(R.color.black)
+
+//                ivNewChat.setColorFilter(R.color.yellow)
+
+                tvNewChat.setTextColor(yellow_color)
+                tvNewGroup.setTextColor(Color.WHITE)
+                tvGlobalSearch.setTextColor(Color.WHITE)
+
+            }
+
+            "New Group" -> {
+                lyNewGroup.setBackgroundResource(R.drawable.new_group_card_bg)
+                lyNewChat.setBackgroundColor(R.color.black)
+                lyGlobalSearch.setBackgroundColor(R.color.black)
+
+//                ivNewGroup.setColorFilter(R.color.yellow)
+
+                tvNewGroup.setTextColor(yellow_color)
+                tvNewChat.setTextColor(Color.WHITE)
+                tvGlobalSearch.setTextColor(Color.WHITE)
+
+
+            }
+            "Global Search" -> {
+                lyGlobalSearch.setBackgroundResource(R.drawable.global_search_card_bg)
+                lyNewGroup.setBackgroundColor(R.color.black)
+                lyNewChat.setBackgroundColor(R.color.black)
+
+//                ivGlobalSearch.setColorFilter(R.color.yellow)
+
+
+                tvGlobalSearch.setTextColor(yellow_color)
+                tvNewChat.setTextColor(Color.WHITE)
+                tvNewGroup.setTextColor(Color.WHITE)
+
+            }
+
+
+        }
+
+    }
+
+    private fun fetchContactsInBackground(frag_context: Context) {
+        val executor = Executors.newSingleThreadExecutor()
+        val handler = Handler(Looper.getMainLooper())
+        executor.execute {
+         getContacts(frag_context)
+
+            handler.post {
+                // on below line we are hiding our progress bar and notifying our adapter class.
+                loadingPB!!.visibility = View.GONE
+                contactRVAdapter!!.notifyDataSetChanged()
+                ly_contact_frag_header.visibility = View.VISIBLE
+                searchBar.visibility = View.VISIBLE
+                saveContactsOnDeviceStorage(contactsModalArrayList)
+            }
+        }
+
     }
 
     private fun prepareContactRV(context:Context) {
@@ -149,8 +267,12 @@ class ContactsFragment : Fragment() {
         // this method is use to read contact from users device.
         // on below line we are creating a string variables for
         // our contact id and display name.
+
         var contactId: String
         var displayName: String
+
+
+
         // on below line we are calling our content resolver for getting contacts
         val cursor: Cursor = context.contentResolver.query(
             ContactsContract.Contacts.CONTENT_URI,
@@ -196,26 +318,26 @@ class ContactsFragment : Fragment() {
         }
         // on below line we are closing our cursor.
         cursor.close()
-        // on below line we are hiding our progress bar and notifying our adapter class.
-        loadingPB!!.visibility = View.GONE
-        contactRVAdapter!!.notifyDataSetChanged()
-        saveContactsOnDeviceStorage(contactsModalArrayList)
+
     }
 
     private fun saveContactsOnDeviceStorage(contactsModalArrayList: ArrayList<ContactsModal>?) {
 
 
 
-//        val sharedPref = activity?.getSharedPreferences(
-//            getString(R.string.ano_contacts_file), Context.MODE_PRIVATE)?: return
-//        with (sharedPref.edit()) {
-//
-//
-//            putStringSet()
-//
-//            putInt(getString(R.string.saved_high_score_key), newHighScore)
-//            apply()
-//        }
+        val sharedPref = activity?.getSharedPreferences(
+            getString(R.string.ano_contacts_file), Context.MODE_PRIVATE)?: return
+        with (sharedPref.edit()) {
+
+            if (contactsModalArrayList != null) {
+                for(contact in contactsModalArrayList){
+                    putString(contact.contactNumber,contact.userName)
+
+                }
+
+            }
+            apply()
+        }
 
 
 
