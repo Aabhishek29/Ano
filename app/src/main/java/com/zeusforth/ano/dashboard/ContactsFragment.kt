@@ -15,6 +15,7 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.graphics.toColor
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -143,6 +144,7 @@ class ContactsFragment : Fragment() {
 
 
     fun checkChatType(){
+        var yellow_color : Int = Color.parseColor("#FFC107")
         when(chatType){
 
             "New Chat" -> {
@@ -150,11 +152,11 @@ class ContactsFragment : Fragment() {
                 lyNewGroup.setBackgroundColor(R.color.black)
                 lyGlobalSearch.setBackgroundColor(R.color.black)
 
-                ivNewChat.setColorFilter(R.color.yellow)
+//                ivNewChat.setColorFilter(R.color.yellow)
 
-                tvNewChat.setTextColor(R.color.yellow)
-                tvNewGroup.setTextColor(R.color.white)
-                tvGlobalSearch.setTextColor(R.color.white)
+                tvNewChat.setTextColor(yellow_color)
+                tvNewGroup.setTextColor(Color.WHITE)
+                tvGlobalSearch.setTextColor(Color.WHITE)
 
             }
 
@@ -165,9 +167,9 @@ class ContactsFragment : Fragment() {
 
 //                ivNewGroup.setColorFilter(R.color.yellow)
 
-                tvNewGroup.setTextColor(R.color.yellow)
-                tvNewChat.setTextColor(R.color.white)
-                tvGlobalSearch.setTextColor(R.color.white)
+                tvNewGroup.setTextColor(yellow_color)
+                tvNewChat.setTextColor(Color.WHITE)
+                tvGlobalSearch.setTextColor(Color.WHITE)
 
 
             }
@@ -178,9 +180,10 @@ class ContactsFragment : Fragment() {
 
 //                ivGlobalSearch.setColorFilter(R.color.yellow)
 
-                tvGlobalSearch.setTextColor(R.color.yellow)
-                tvNewChat.setTextColor(R.color.white)
-                tvNewGroup.setTextColor(R.color.white)
+
+                tvGlobalSearch.setTextColor(yellow_color)
+                tvNewChat.setTextColor(Color.WHITE)
+                tvNewGroup.setTextColor(Color.WHITE)
 
             }
 
