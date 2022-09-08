@@ -1,0 +1,108 @@
+type ChatMessages {
+  messageId: ID
+
+  message: String
+
+  mimeType: String
+
+  createdAt: String
+
+  sender: String
+
+  emotion: String
+
+  SessionDetails: SessionDetails
+}
+
+type Mutation {
+  createUsers(userName: String!, name: String!, email: String, password: String!, phone: String, organizationEmail: String, profileUrl: String): Users
+}
+
+type Participants {
+  participantId: String
+
+  userId: String
+
+  sessionId: String
+}
+
+type Query {
+  allUsers: [Users]
+
+  userDetails(appId: String, sessionListId: String, deactivateUser: String): [UserDetails]
+
+  sessionDetails: [SessionDetails]
+
+  chatMessages: [ChatMessages]
+
+  participants: [Participants]
+}
+
+type SessionDetails {
+  sessionId: String
+
+  createdAt: String
+
+  updatedAt: String
+
+  chatType: String
+
+  groupProfileUrl: String
+
+  connectionType: String
+
+  creator: String
+
+  participantsList: [Participants]
+
+  chatMessagesId: [ChatMessages]
+}
+
+type UserDetails {
+  sessionListId: String!
+
+  createdAt: String!
+
+  updatedAt: String!
+
+  appId: String!
+
+  status: String
+
+  profileUrl: String
+
+  deactivateUser: String
+
+  sessionDetailsList: [SessionDetails]
+}
+
+type Users {
+  userName: String!
+
+  userId: String!
+
+  name: String!
+
+  email: String!
+
+  password: String!
+
+  phone: String
+
+  organizationEmail: String
+
+  createdAt: String
+
+  updatedAt: String
+
+  profileUrl: String
+
+  authenticated: String
+
+  userDetails: [UserDetails]
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}
