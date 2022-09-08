@@ -106,3 +106,9 @@ schema {
   query: Query
   mutation: Mutation
 }
+
+
+# for generating schema
+
+#./gradlew downloadApolloSchema --endpoint='https://amsportalapp.herokuapp.com/graphql' --schema=app/src/main/graphql/com/example/rocketrese
+#rver/schema.graphqls
