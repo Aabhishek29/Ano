@@ -6,10 +6,16 @@
         <entry key="..\:/Android projects shared/Ano/app/src/main/res/drawable/ic_baseline_send_24.xml" value="0.1665" />
         <entry key="..\:/Android projects shared/Ano/app/src/main/res/drawable/search_bg.xml" value="0.1425" />
         <entry key="..\:/Android projects shared/Ano/app/src/main/res/layout/activity_chat.xml" value="0.15" />
+        <entry key="..\:/Android projects shared/Ano/app/src/main/res/layout/activity_login.xml" value="0.18703703703703703" />
+        <entry key="..\:/Android projects shared/Ano/app/src/main/res/layout/activity_signup.xml" value="0.25" />
         <entry key="..\:/Android projects shared/Ano/app/src/main/res/layout/chat_layout.xml" value="0.18" />
         <entry key="..\:/Android projects shared/Ano/app/src/main/res/layout/chat_screen_text_box.xml" value="0.16" />
         <entry key="..\:/Android projects shared/Ano/app/src/main/res/layout/contacts_item_list.xml" value="0.125" />
         <entry key="..\:/Android projects shared/Ano/app/src/main/res/layout/fragment_contacts.xml" value="0.13072916666666667" />
+        <entry key="..\:/Android projects shared/Ano/app/src/main/res/layout/fragment_otp.xml" value="0.1296875" />
+        <entry key="..\:/Android projects shared/Ano/app/src/main/res/layout/fragment_sign_up_email.xml" value="0.18564102564102564" />
+        <entry key="..\:/Android projects shared/Ano/app/src/main/res/layout/fragment_sign_up_email2.xml" value="0.18854166666666666" />
+        <entry key="..\:/Android projects shared/Ano/app/src/main/res/layout/fragment_sign_up_phone.xml" value="0.25" />
         <entry key="..\:/Android projects shared/Ano/app/src/main/res/layout/recycler_chat_layout.xml" value="0.11927083333333334" />
         <entry key="..\:/Android projects shared/Ano/app/src/main/res/layout/search_bar_contact_frag.xml" value="0.25" />
         <entry key="..\:/Users/abhi2/AndroidStudioProjects/Ano/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2145" />
@@ -26,15 +32,8 @@
         <entry key="..\:/Users/abhi2/AndroidStudioProjects/Ano/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
         <entry key="..\:/Users/abhi2/AndroidStudioProjects/Ano/app/src/main/res/layout/fragment_sign_up_phone.xml" value="0.264" />
         <entry key="..\:/Users/abhi2/AndroidStudioProjects/Ano/app/src/main/res/layout/fragment_signup_phonenumber.xml" value="0.190625" />
-        <entry key="app/src/main/res/drawable-v24/login_btn_bg.xml" value="0.2195" />
-        <entry key="app/src/main/res/drawable/ic_baseline_perm_phone_msg_24.xml" value="0.2195" />
         <entry key="app/src/main/res/drawable/logout.xml" value="0.183" />
-        <entry key="app/src/main/res/drawable/text_view_background.xml" value="0.2195" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.22291666666666668" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/chat_layout.xml" value="0.21458333333333332" />
-        <entry key="app/src/main/res/layout/fragment_sign_up_email.xml" value="0.2911458333333333" />
         <entry key="app/src/main/res/layout/fragment_sign_up_phone.xml" value="0.36614583333333334" />
         <entry key="app/src/main/res/menu/signout.xml" value="0.23489583333333333" />
       </map>

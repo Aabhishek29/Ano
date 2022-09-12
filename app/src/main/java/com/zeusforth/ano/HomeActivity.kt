@@ -84,7 +84,7 @@ class HomeActivity : AppCompatActivity()  {
         navigationView.setNavigationItemSelectedListener { menuItem ->
 
             if (menuItem.title!= "Chat"){
-                navigationView.menu.getItem(0).subMenu.getItem(0).isChecked = false
+                navigationView.menu.getItem(0).subMenu!!.getItem(0).isChecked = false
             }
 
             // Handle menu item selected
