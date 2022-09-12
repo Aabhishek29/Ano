@@ -16,6 +16,7 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.material.textfield.TextInputEditText
 import com.zeusforth.ano.HomeActivity
 import com.zeusforth.ano.R
 import org.json.JSONException
@@ -24,13 +25,11 @@ import org.json.JSONException
 class LoginActivity : AppCompatActivity() {
     private val TAG : String  = "LoginActvity";
     private var requestQueue: RequestQueue? = null
-    lateinit var username: EditText
-    lateinit var password:EditText
+    lateinit var username: TextInputEditText
+    lateinit var password:TextInputEditText
     lateinit var signup_btn : TextView
     lateinit var progress_bar: ProgressBar
     lateinit var btn1:Button
-    lateinit var companyId:String
-    lateinit var agentId:String
     private lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,11 +37,11 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         val window: Window = getWindow()
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.setStatusBarColor(ContextCompat.getColor(baseContext , R.color.primary))
+//        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = ContextCompat.getColor(baseContext , R.color.primary)
 
-        btn1 = findViewById<Button>(R.id.LoginBtn)
+        btn1 = findViewById(R.id.LoginBtn)
         username = findViewById(R.id.username)
         password = findViewById(R.id.user_password)
         signup_btn = findViewById(R.id.signup_activity_btn)
@@ -59,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         signup_btn.setOnClickListener {
-            startActivity(Intent(this, SignupActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK),ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            startActivity(Intent(this, SignupActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
         }
 
     }
@@ -116,8 +115,8 @@ class LoginActivity : AppCompatActivity() {
             error.printStackTrace()
             Log.e(TAG,error.toString())
             Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
-            username.text.clear()
-            password.text.clear()
+            username.text!!.clear()
+            password.text!!.clear()
             progress_bar.visibility = View.GONE
             btn1.isEnabled = true
 

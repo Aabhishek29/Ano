@@ -8,9 +8,11 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.zeusforth.ano.R
@@ -18,9 +20,14 @@ import com.zeusforth.ano.authentication.SignUpPhone
 
 class SignupActivity : AppCompatActivity() {
 
+    private lateinit var signUpOptionsLy:LinearLayout
+    private lateinit var fragmentSignUpContainer:FragmentContainerView
+    private lateinit var phoneSignUpBtn:Button
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
 //        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         setContentView(R.layout.activity_signup)
@@ -31,6 +38,12 @@ class SignupActivity : AppCompatActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = ContextCompat.getColor(baseContext , R.color.primary)
 
+
+        signUpOptionsLy = findViewById(R.id.signUpOptionsLy)
+        fragmentSignUpContainer = findViewById(R.id.fragmentSignUpContainer)
+        phoneSignUpBtn = findViewById(R.id.phoneSignUpBtn)
+
+
         // To connect the fragment with activity
         if (savedInstanceState == null) {
             supportFragmentManager.commit {
@@ -39,7 +52,7 @@ class SignupActivity : AppCompatActivity() {
                     R.anim.fadein,R.anim.slide_out
                 )
                 setReorderingAllowed(true)
-                add<SignUpPhone>(R.id.fragment_sign_up_phone)
+                add<SignUpPhone>(R.id.fragmentSignUpContainer)
             }
         }
     }
