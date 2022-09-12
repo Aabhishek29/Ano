@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
+    id "com.apollographql.apollo3" version "3.5.0"
 }
 
 android {
@@ -33,7 +34,9 @@ android {
         jvmTarget = '1.8'
     }
 }
-
+apollo {
+    packageName.set("com.zeusforth")
+}
 dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.8'
 
@@ -67,4 +70,5 @@ dependencies {
     implementation 'com.hbb20:ccp:2.4.7'
     implementation 'io.michaelrocks:libphonenumber-android:8.12.52'
 
+    implementation "com.apollographql.apollo3:apollo-runtime:3.5.0"
 }
