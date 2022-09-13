@@ -1,0 +1,22 @@
+mutation createUsers(
+userName: String!,
+name: String!,
+email: String,
+password: String!,
+phone: String,
+organizationEmail: String,
+profileUrl: String
+){
+createUsers (
+input: {
+userName: $userName,
+name: $name,
+email: $email,
+password: $password,
+phone: $phone,
+organizationEmail: $organizationEmail,
+profileUrl: $profileUrl
+
+}
+)
+}
