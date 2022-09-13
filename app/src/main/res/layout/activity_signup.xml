@@ -4,19 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary"
+    android:background="@drawable/login_signup_bg"
     tools:context=".authentication.SignupActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:background="@drawable/login_signup_bg"
         android:layout_height="match_parent">
+        
+        <LinearLayout
+            android:id="@+id/signUpOptionsLy"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+
+            <Button
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:id="@+id/phoneSignUpBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SignUp using Phone Number"
+                android:textSize="18sp"
+                app:icon="@drawable/ic_baseline_perm_phone_msg_24"
+                android:layout_marginVertical="20dp"
+                />
+            <Button
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:id="@+id/emailSignUpBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SignUp using Email"
+                android:textSize="18sp"
+                app:icon="@drawable/ic_baseline_email_24"
+                android:layout_marginVertical="20dp"
+
+                />
+            <Button
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:id="@+id/anoySignUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Continue as Anonymous"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                app:icon="@drawable/ic_baseline_person_24"
+                android:layout_marginVertical="20dp"
+
+                />
+
+        </LinearLayout>
+
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_sign_up_phone"
+        android:id="@+id/fragmentSignUpContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:ignore="MissingConstraints" />
+        android:visibility="gone"
+        />
 
 <!--        <androidx.fragment.app.FragmentContainerView-->
 <!--            android:id="@+id/fragment_otp_phone"-->

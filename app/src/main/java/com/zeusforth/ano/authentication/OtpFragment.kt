@@ -19,8 +19,9 @@ import com.google.firebase.auth.*
 import com.google.firebase.auth.PhoneAuthProvider.ForceResendingToken
 import com.google.firebase.auth.PhoneAuthProvider.OnVerificationStateChangedCallbacks
 import com.zeusforth.ano.HomeActivity
-import com.zeusforth.ano.R
 import java.util.concurrent.TimeUnit
+import com.zeusforth.ano.R
+
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -37,6 +38,9 @@ class OtpFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private val TAG: String = "OtpFragment"
+
+
     private lateinit var username:String
     private lateinit var password:String
     private lateinit var ph_number:String
@@ -70,7 +74,7 @@ class OtpFragment : Fragment() {
         ph_number = arguments?.getString("ph_number").toString()
         mAuth = FirebaseAuth.getInstance();
 
-        Log.i("userdata", "onCreateView: username: ${username}  password ${password} ph_no ${ph_number}")
+        Log.i(TAG, "onCreateView: username: ${username}  password ${password} ph_no ${ph_number}")
 
         val next_btn = root.findViewById<Button>(R.id.check_otp)
         check_otp = root.findViewById(R.id.check_otp)
@@ -85,13 +89,11 @@ class OtpFragment : Fragment() {
 
             val ProfileFragment: Fragment =
                 ProfileFragment()
-            activity?.supportFragmentManager?.beginTransaction()?.setReorderingAllowed(true)?.replace(R.id.fragment_sign_up_phone,ProfileFragment)?.commit()
+            activity?.supportFragmentManager?.beginTransaction()?.setReorderingAllowed(true)?.replace(R.id.fragmentSignUpContainer,ProfileFragment)?.commit()
 
         }
 
-        ph_number = "+91"+ph_number
-        ph_number = ph_number.replace(" ","")
-        Log.i("auth", "onCreateView: ph no. ${ph_number}")
+        Log.i(TAG, "onCreateView: ph no. ${ph_number}")
         verifyOtp(ph_number)
 
         check_otp.setOnClickListener{
@@ -99,7 +101,7 @@ class OtpFragment : Fragment() {
             var otp_code:String = otp_1.text.toString()+otp_2.text.toString()+otp_3.text.toString()+otp_4.text.toString()+otp_5.text.toString()+otp_6.text.toString()
             otp_code =otp_code.trim()
             otp_code = otp_code.replace(" ","")
-            Log.i("auth", "onCreateView: otp code. ${otp_code}")
+            Log.i(TAG, "onCreateView: otp code. ${otp_code}")
 
             if (otp_code.length==6){
                 check_otp.isActivated = false
@@ -124,10 +126,10 @@ class OtpFragment : Fragment() {
         val options = PhoneAuthOptions.newBuilder(mAuth)
             .setPhoneNumber(pnumber) // Phone number to verify
             .setTimeout(30L, TimeUnit.SECONDS) // Timeout and unit
-            .setActivity(activity!!) // Activity (for callback binding)
+            .setActivity(requireActivity()) // Activity (for callback binding)
             .setCallbacks(object : OnVerificationStateChangedCallbacks() {
                 override fun onVerificationCompleted(phoneAuthCredential: PhoneAuthCredential) {
-                    Log.i("auth", "onVerificationCompleted: In")
+                    Log.i(TAG, "onVerificationCompleted: In")
                     signInWithPhoneAuthCredential(phoneAuthCredential)
                 }
 
@@ -140,10 +142,15 @@ class OtpFragment : Fragment() {
 //                    startActivity(intent)
 //                    finish()
                     //                                super.onCodeSent(s, forceResendingToken);
+
+                    Log.i(TAG, "onCodesent: In "+otpid)
+
                 }
 
                 override fun onVerificationFailed(e: FirebaseException) {
                     Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                    Log.i(TAG, "failed verification: In ")
+
                 }
             }) // OnVerificationStateChangedCallbacks
             .build()
@@ -153,13 +160,13 @@ class OtpFragment : Fragment() {
 
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
         mAuth.signInWithCredential(credential)
-            .addOnCompleteListener(activity!!,
+            .addOnCompleteListener(requireActivity(),
                 OnCompleteListener<AuthResult?> { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
-                        Log.i("auth", "onsuccessful:  before")
+                        Log.i(TAG, "onsuccessful:  Otp Verification")
 
-                        sharedPreferences = activity!!.baseContext.getSharedPreferences(" MY_PREF", Context.MODE_PRIVATE)
+                        sharedPreferences = requireActivity().baseContext.getSharedPreferences(" MY_PREF", Context.MODE_PRIVATE)
                         val editor = sharedPreferences.edit()
                         editor.putString("name", username)
                         editor.putString("pass", password)
