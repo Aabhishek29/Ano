@@ -61,7 +61,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        />
+        android:name="com.zeusforth.ano.authentication.SignUpPhoneFragment"
+        tools:layout="@layout/fragment_sign_up_phone" />
 
 <!--        <androidx.fragment.app.FragmentContainerView-->
 <!--            android:id="@+id/fragment_otp_phone"-->

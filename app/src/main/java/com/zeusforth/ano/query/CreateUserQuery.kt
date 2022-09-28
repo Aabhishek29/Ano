@@ -1,8 +1,10 @@
-//package com.zeusforth.ano.query
+package com.zeusforth.ano.query
 //
 //import com.apollographql.apollo3.api.Response
 //import com.apollographql.apollo3.exception.ApolloException
 //import javax.security.auth.callback.Callback
+//
+//
 //
 //
 //class CreateUserQuery {
