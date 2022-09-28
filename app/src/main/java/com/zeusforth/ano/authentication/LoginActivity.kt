@@ -12,11 +12,14 @@ import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.apollographql.apollo3.ApolloClient
 import com.google.android.material.textfield.TextInputEditText
+import com.zeusforth.CreateUsersMutation
 import com.zeusforth.ano.HomeActivity
 import com.zeusforth.ano.R
 import org.json.JSONException
@@ -30,6 +33,8 @@ class LoginActivity : AppCompatActivity() {
     lateinit var signup_btn : TextView
     lateinit var progress_bar: ProgressBar
     lateinit var btn1:Button
+    var apolloClient: ApolloClient? = null
+
     private lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,11 +62,28 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
+        mutation()
         signup_btn.setOnClickListener {
             startActivity(Intent(this, SignupActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
         }
 
     }
+
+     fun mutation() {
+         Log.d(TAG,"apollo response: start")
+
+         val createUsersMutation: CreateUsersMutation = CreateUsersMutation("P1","p","p1@gmail.com",
+            "123456","1234661231","p1org@gmail.com","")
+        apolloClient = ApolloClient.Builder().serverUrl("https://amsportalapp.herokuapp.com/graphql").build()
+            lifecycleScope.launchWhenResumed {
+               val response=  apolloClient!!.mutation(createUsersMutation).execute()
+                Log.d(TAG,"apollo response: "+response.toString())
+
+            }
+
+        }
+
+
     private fun jsonParse(name: String , pass: String) {
         Log.e(TAG, "${name} and ${pass}")
         val url =

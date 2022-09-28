@@ -2,10 +2,7 @@ package com.zeusforth.ano.listener
 
 interface GqlQueryListener {
 
-    public fun onSuccessQueryResponse(){
+    public fun onSuccessQueryResponse()
+    public fun onErrorFetchingQuery()
 
-    }
-    public fun onErrorFetchingQuery(){
-
-    }
 }

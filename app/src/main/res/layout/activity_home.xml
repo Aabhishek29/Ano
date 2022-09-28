@@ -42,7 +42,9 @@
             android:id="@+id/fragment_dashboard"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:name="com.zeusforth.ano.dashboard.ChatFragment"
+            tools:layout="@layout/fragment_chat" />
 
 
 
