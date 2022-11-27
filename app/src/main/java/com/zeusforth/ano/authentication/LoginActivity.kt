@@ -75,7 +75,7 @@ class LoginActivity : AppCompatActivity() {
          val createUsersMutation: CreateUsersMutation = CreateUsersMutation("P1","p","p1@gmail.com",
             "123456","1234661231","p1org@gmail.com","")
         apolloClient = ApolloClient.Builder().serverUrl("https://amsportalapp.herokuapp.com/graphql").build()
-            lifecycleScope.launchWhenResumed {
+         lifecycleScope.launchWhenResumed {
                val response=  apolloClient!!.mutation(createUsersMutation).execute()
                 Log.d(TAG,"apollo response: "+response.toString())
 

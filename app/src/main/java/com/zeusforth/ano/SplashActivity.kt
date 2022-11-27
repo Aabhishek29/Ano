@@ -23,6 +23,8 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        isUserLoggedIn = checkUserData()
+
 //        user = FirebaseAuth.getInstance().getCurrentUser()
         YoYo.with(Techniques.FadeIn)
             .duration(2700)
@@ -55,7 +57,6 @@ class SplashActivity : AppCompatActivity() {
         }, 2000)
 
 
-    isUserLoggedIn = checkUserData()
 
     }
 

@@ -150,41 +150,47 @@ class ContactsFragment : Fragment() {
 
             "New Chat" -> {
                 lyNewChat.setBackgroundResource(R.drawable.new_chat_card_bg)
-                lyNewGroup.setBackgroundColor(R.color.black)
-                lyGlobalSearch.setBackgroundColor(R.color.black)
+                lyNewGroup.setBackgroundColor(Color.WHITE)
+                lyGlobalSearch.setBackgroundColor(Color.WHITE)
 
-//                ivNewChat.setColorFilter(R.color.yellow)
+                ivNewChat.setColorFilter(Color.WHITE)
+                ivNewGroup.setColorFilter(Color.parseColor("#0060FF"))
+                ivGlobalSearch.setColorFilter(Color.parseColor("#0060FF"))
 
                 tvNewChat.setTextColor(yellow_color)
-                tvNewGroup.setTextColor(Color.WHITE)
-                tvGlobalSearch.setTextColor(Color.WHITE)
+                tvNewGroup.setTextColor(Color.BLACK)
+                tvGlobalSearch.setTextColor(Color.BLACK)
 
             }
 
             "New Group" -> {
                 lyNewGroup.setBackgroundResource(R.drawable.new_group_card_bg)
-                lyNewChat.setBackgroundColor(R.color.black)
-                lyGlobalSearch.setBackgroundColor(R.color.black)
+                lyNewChat.setBackgroundColor(Color.WHITE)
+                lyGlobalSearch.setBackgroundColor(Color.WHITE)
 
-//                ivNewGroup.setColorFilter(R.color.yellow)
+                ivNewChat.setColorFilter(Color.parseColor("#0060FF"))
+                ivNewGroup.setColorFilter(Color.WHITE)
+                ivGlobalSearch.setColorFilter(Color.parseColor("#0060FF"))
 
                 tvNewGroup.setTextColor(yellow_color)
-                tvNewChat.setTextColor(Color.WHITE)
-                tvGlobalSearch.setTextColor(Color.WHITE)
+                tvNewChat.setTextColor(Color.BLACK)
+                tvGlobalSearch.setTextColor(Color.BLACK)
 
 
             }
             "Global Search" -> {
                 lyGlobalSearch.setBackgroundResource(R.drawable.global_search_card_bg)
-                lyNewGroup.setBackgroundColor(R.color.black)
-                lyNewChat.setBackgroundColor(R.color.black)
+                lyNewGroup.setBackgroundColor(Color.WHITE)
+                lyNewChat.setBackgroundColor(Color.WHITE)
 
-//                ivGlobalSearch.setColorFilter(R.color.yellow)
+                ivNewChat.setColorFilter(Color.parseColor("#0060FF"))
+                ivNewGroup.setColorFilter(Color.parseColor("#0060FF"))
+                ivGlobalSearch.setColorFilter(Color.WHITE)
 
 
                 tvGlobalSearch.setTextColor(yellow_color)
-                tvNewChat.setTextColor(Color.WHITE)
-                tvNewGroup.setTextColor(Color.WHITE)
+                tvNewChat.setTextColor(Color.BLACK)
+                tvNewGroup.setTextColor(Color.BLACK)
 
             }
 

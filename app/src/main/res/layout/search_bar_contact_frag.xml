@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="10dp"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,12 +26,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="16sp"
-                android:paddingHorizontal="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:paddingHorizontal="15dp"
                 android:hint="Enter user name..."
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:singleLine="true"
-                android:maxLength="40"
-                android:textColorHint="@color/light_white"
+                android:maxLength="30"
+                android:textColorHint="@color/secondary_blue"
 
                 />
             <ImageView
