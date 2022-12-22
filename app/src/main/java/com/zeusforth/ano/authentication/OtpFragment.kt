@@ -12,7 +12,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.google.android.datatransport.runtime.scheduling.jobscheduling.SchedulerConfig
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
@@ -41,18 +40,18 @@ class OtpFragment : Fragment() {
     private val TAG: String = "OtpFragment"
 
 
-    private lateinit var username:String
-    private lateinit var password:String
-    private lateinit var ph_number:String
-    private lateinit var otpid:String
+    private lateinit var userName:String
+    private lateinit var userPassword:String
+    private lateinit var userPhoneNumber:String
+    private lateinit var otpId:String
     private lateinit var mAuth: FirebaseAuth
-    private lateinit var check_otp:Button
-    private lateinit var otp_1:EditText
-    private lateinit var otp_2:EditText
-    private lateinit var otp_3:EditText
-    private lateinit var otp_4:EditText
-    private lateinit var otp_5:EditText
-    private lateinit var otp_6:EditText
+    private lateinit var checkOtp:Button
+    private lateinit var otp1:EditText
+    private lateinit var otp2:EditText
+    private lateinit var otp3:EditText
+    private lateinit var otp4:EditText
+    private lateinit var otp5:EditText
+    private lateinit var otp6:EditText
     private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,43 +68,42 @@ class OtpFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val root =inflater.inflate(R.layout.fragment_otp, container, false)
-        username = arguments?.getString("username").toString()
-        password = arguments?.getString("password").toString()
-        ph_number = arguments?.getString("ph_number").toString()
+        userName = arguments?.getString("userName").toString()
+        userPassword = arguments?.getString("userPassword").toString()
+        userPhoneNumber = arguments?.getString("userPhoneNumber").toString()
         mAuth = FirebaseAuth.getInstance();
 
-        Log.i(TAG, "onCreateView: username: ${username}  password ${password} ph_no ${ph_number}")
+        Log.i(TAG, "onCreateView: username: ${userName}  password ${userPassword} ph_no ${userPhoneNumber}")
 
-        val next_btn = root.findViewById<Button>(R.id.check_otp)
-        check_otp = root.findViewById(R.id.check_otp)
-        otp_1 =root.findViewById(R.id.otp_1)
-        otp_2 =root.findViewById(R.id.otp_2)
-        otp_3 =root.findViewById(R.id.otp_3)
-        otp_4 =root.findViewById(R.id.otp_4)
-        otp_5 =root.findViewById(R.id.otp_5)
-        otp_6 =root.findViewById(R.id.otp_6)
+        checkOtp = root.findViewById(R.id.check_otp)
+        otp1 =root.findViewById(R.id.otp_1)
+        otp2 =root.findViewById(R.id.otp_2)
+        otp3 =root.findViewById(R.id.otp_3)
+        otp4 =root.findViewById(R.id.otp_4)
+        otp5 =root.findViewById(R.id.otp_5)
+        otp6 =root.findViewById(R.id.otp_6)
 
-        next_btn.setOnClickListener{
+//        checkOtp.setOnClickListener{
+//
+//            val profileFragment: Fragment =
+//                ProfileFragment()
+//            activity?.supportFragmentManager?.beginTransaction()?.setReorderingAllowed(true)?.replace(R.id.fragmentSignUpContainer,profileFragment)?.commit()
+//
+//        }
 
-            val ProfileFragment: Fragment =
-                ProfileFragment()
-            activity?.supportFragmentManager?.beginTransaction()?.setReorderingAllowed(true)?.replace(R.id.fragmentSignUpContainer,ProfileFragment)?.commit()
+        Log.i(TAG, "onCreateView: ph no. $userPhoneNumber")
+        verifyOtp(userPhoneNumber)
 
-        }
+        checkOtp.setOnClickListener{
 
-        Log.i(TAG, "onCreateView: ph no. ${ph_number}")
-        verifyOtp(ph_number)
-
-        check_otp.setOnClickListener{
-
-            var otp_code:String = otp_1.text.toString()+otp_2.text.toString()+otp_3.text.toString()+otp_4.text.toString()+otp_5.text.toString()+otp_6.text.toString()
+            var otp_code:String = otp1.text.toString()+otp2.text.toString()+otp3.text.toString()+otp4.text.toString()+otp5.text.toString()+otp6.text.toString()
             otp_code =otp_code.trim()
             otp_code = otp_code.replace(" ","")
-            Log.i(TAG, "onCreateView: otp code. ${otp_code}")
+            Log.i(TAG, "onCreateView: otp code. $otp_code")
 
             if (otp_code.length==6){
-                check_otp.isActivated = false
-                val credential = PhoneAuthProvider.getCredential(otpid,otp_code)
+                checkOtp.isActivated = false
+                val credential = PhoneAuthProvider.getCredential(otpId,otp_code)
                 signInWithPhoneAuthCredential(credential)
 
             }else{
@@ -134,7 +132,7 @@ class OtpFragment : Fragment() {
                 }
 
                 override fun onCodeSent(s: String, forceResendingToken: ForceResendingToken) {
-                    otpid = s
+                    otpId = s
 //                    val intent = Intent(this@SignUp, ProcessOtp::class.java)
 //                    intent.putExtra("pnumber", pnumber)
 //                    intent.putExtra("password", password)
@@ -143,7 +141,7 @@ class OtpFragment : Fragment() {
 //                    finish()
                     //                                super.onCodeSent(s, forceResendingToken);
 
-                    Log.i(TAG, "onCodesent: In "+otpid)
+                    Log.i(TAG, "onCodesent: In "+otpId)
 
                 }
 
@@ -166,10 +164,10 @@ class OtpFragment : Fragment() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.i(TAG, "onsuccessful:  Otp Verification")
 
-                        sharedPreferences = requireActivity().baseContext.getSharedPreferences(" MY_PREF", Context.MODE_PRIVATE)
+                        sharedPreferences = requireActivity().baseContext.getSharedPreferences(R.string.user_data_pref_file.toString(), Context.MODE_PRIVATE)
                         val editor = sharedPreferences.edit()
-                        editor.putString("name", username)
-                        editor.putString("pass", password)
+                        editor.putString("userName", userName)
+                        editor.putString("userPassword", userPassword)
                         editor.apply()
 
                         val toast = Toast.makeText(activity, "Account successfully created!", Toast.LENGTH_SHORT)

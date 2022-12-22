@@ -106,7 +106,8 @@ class SignupActivity : AppCompatActivity() {
             }
         }else{
             val SignUpPhone: Fragment = SignUpPhoneFragment()
-            this?.supportFragmentManager?.beginTransaction()?.setReorderingAllowed(true)?.replace(R.id.fragmentSignUpContainer,SignUpPhone)?.commit()
+            this.supportFragmentManager.beginTransaction()
+                .setReorderingAllowed(true).replace(R.id.fragmentSignUpContainer,SignUpPhone).commit()
 
         }
     }

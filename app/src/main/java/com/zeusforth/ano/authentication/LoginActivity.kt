@@ -26,10 +26,10 @@ import org.json.JSONException
 
 
 class LoginActivity : AppCompatActivity() {
-    private val TAG : String  = "LoginActvity";
+    private val TAG : String  = "LoginActivity";
     private var requestQueue: RequestQueue? = null
-    lateinit var username: TextInputEditText
-    lateinit var password:TextInputEditText
+    lateinit var userName: TextInputEditText
+    lateinit var userPassword:TextInputEditText
     lateinit var signup_btn : TextView
     lateinit var progress_bar: ProgressBar
     lateinit var btn1:Button
@@ -47,8 +47,8 @@ class LoginActivity : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(baseContext , R.color.primary)
 
         btn1 = findViewById(R.id.LoginBtn)
-        username = findViewById(R.id.username)
-        password = findViewById(R.id.user_password)
+        userName = findViewById(R.id.username)
+        userPassword = findViewById(R.id.user_password)
         signup_btn = findViewById(R.id.signup_activity_btn)
 
 
@@ -58,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
             progress_bar.visibility = View.VISIBLE
             btn1.isEnabled = false
 
-            jsonParse(username.text.toString(),password.text.toString())
+            jsonParse(userName.text.toString(),userPassword.text.toString())
 
         }
 
@@ -89,7 +89,8 @@ class LoginActivity : AppCompatActivity() {
         val url =
             "https://amsportalapp.herokuapp.com/api/users/auth?username=${name}&password=${pass}"
         try{
-        val request = JsonObjectRequest(Request.Method.GET, url, null, { response ->
+        val request = JsonObjectRequest(Request.Method.GET, url, null,
+            { response ->
             try {
                 Log.e(TAG, response.toString())
                 if (response.get("status") == "true"){
@@ -98,10 +99,10 @@ class LoginActivity : AppCompatActivity() {
                         val intent = Intent(this, HomeActivity::class.java)
                             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
 
-                        sharedPreferences = baseContext.getSharedPreferences(" MY_PREF", Context.MODE_PRIVATE)
+                        sharedPreferences = baseContext.getSharedPreferences(R.string.user_data_pref_file.toString(), Context.MODE_PRIVATE)
                         val editor = sharedPreferences.edit()
-                        editor.putString("name", name)
-                        editor.putString("pass", pass)
+                        editor.putString("userName", name)
+                        editor.putString("userPassword", pass)
                         editor.apply()
 
 
@@ -137,8 +138,8 @@ class LoginActivity : AppCompatActivity() {
             error.printStackTrace()
             Log.e(TAG,error.toString())
             Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
-            username.text!!.clear()
-            password.text!!.clear()
+            userName.text!!.clear()
+            userPassword.text!!.clear()
             progress_bar.visibility = View.GONE
             btn1.isEnabled = true
 
@@ -148,9 +149,5 @@ class LoginActivity : AppCompatActivity() {
         Log.e(TAG,e.toString())
 
     }
-
-
-
-
     }
 }

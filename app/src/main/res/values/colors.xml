@@ -12,6 +12,16 @@
     <color name="light_white">#ddd</color>
     <color name="secondary_blue">#3F51B5</color>
     <color name="button_blue">#1c64e9</color>
+    <color name ="primary_reply_blue">#344955 </color>
+    <color name ="primary_dark_reply_blue">#232F34 </color>
+    <color name ="primary_light_reply_blue">#4A6572 </color>
+    <color name ="secondary_reply_orange">#F9AA33 </color>
+
+    <color name ="primary_shrine">#FEDBD0 </color>
+    <color name ="primary_dark_shrine">#442C2E </color>
+    <color name ="primary_shrine_light">#FEEAE6 </color>
+
+
 
 
 </resources>

@@ -16,7 +16,7 @@ import com.zeusforth.ano.authentication.LoginActivity
 
 
 class SplashActivity : AppCompatActivity() {
-
+    lateinit var anoApp:AnoApp
      var isUserLoggedIn:Boolean = false
 
 //    var user: FirebaseUser? = null
@@ -40,6 +40,7 @@ class SplashActivity : AppCompatActivity() {
 //                Log.i("auth", "Signed in user : ${user!!.phoneNumber}")
 
             if (isUserLoggedIn){
+
                 Toast.makeText(this,"Signed in successfully",Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, HomeActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
 
@@ -62,11 +63,18 @@ class SplashActivity : AppCompatActivity() {
 
     private fun checkUserData(): Boolean {
 
-        val sharedPreferences = baseContext.getSharedPreferences(" MY_PREF", Context.MODE_PRIVATE)
-        val name = sharedPreferences.getString("name",null)
-        val pass = sharedPreferences.getString("pass",null)
+        val sharedPreferences = baseContext.getSharedPreferences(R.string.user_data_pref_file.toString(), Context.MODE_PRIVATE)
+        val name = sharedPreferences.getString("userName",null)
+        val pass = sharedPreferences.getString("userPassword",null)
 
-        return name != null && pass != null
+
+        if (name != null && pass != null){
+            anoApp.getInstance()?.setUserName(name)
+            anoApp.getInstance()?.setUserPassword(pass)
+            return true
+
+        }
+        else return false
 
     }
 }

@@ -7,13 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
 import com.hbb20.CountryCodePicker
 import com.zeusforth.ano.R
+import com.zeusforth.ano.authentication.LoginActivity
+import com.zeusforth.ano.authentication.OtpFragment
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -24,9 +25,9 @@ private const val ARG_PARAM2 = "param2"
 
 class SignUpPhoneFragment : Fragment() {
 
-    private lateinit var user_name:String ;
-    private lateinit var password:String ;
-    private lateinit var ph_number:String ;
+    private lateinit var userName:String ;
+    private lateinit var userPassword:String ;
+    private lateinit var userPhoneNumber:String ;
     private var check:Boolean = false;
     private var param1: String? = null
     private var param2: String? = null
@@ -59,7 +60,7 @@ class SignUpPhoneFragment : Fragment() {
             Log.d(TAG,"Signup call to Fragment OTP")
             check = true;
             if (!username_v.text?.isEmpty()!!){
-                user_name = username_v.text.toString()
+                userName = username_v.text.toString()
 
             }else{
                 Toast.makeText(context,"username is required",Toast.LENGTH_SHORT).show()
@@ -68,7 +69,7 @@ class SignUpPhoneFragment : Fragment() {
 
             if (password_v.text!!.isNotEmpty() && password_v.text!!.length >= 6){
                 if(password_v.text.toString().equals(confirm_password_v.text.toString())){
-                    password = password_v.text.toString()
+                    userPassword = password_v.text.toString()
                 }else{
 
                     Toast.makeText(context,"Password does not match!",Toast.LENGTH_SHORT).show()
@@ -83,7 +84,7 @@ class SignUpPhoneFragment : Fragment() {
             if (ph_number_v.text!!.isNotEmpty()){
                 Log.d(TAG,"Phone"+ph_number_v.text)
 
-                ph_number = ccp.fullNumberWithPlus.replace(" ","");
+                userPhoneNumber = ccp.fullNumberWithPlus.replace(" ","");
 
 
             }else{
@@ -96,10 +97,10 @@ class SignUpPhoneFragment : Fragment() {
 
             var data:Bundle = Bundle()
             if (check){
-                data.putString("username",user_name)
-                data.putString("password",password)
-                data.putString("ph_number",ph_number)
-                Log.d(TAG,"Phone"+ph_number)
+                data.putString("userName",userName)
+                data.putString("userPassword",userPassword)
+                data.putString("userPhoneNumber",userPhoneNumber)
+                Log.d(TAG,"userPhoneNumber "+userPhoneNumber)
 
 
                 val otpFragment: Fragment = OtpFragment()
@@ -121,7 +122,7 @@ class SignUpPhoneFragment : Fragment() {
 
         val login_activity_btn = root.findViewById<TextView>(R.id.login_activity_btn)
         login_activity_btn.setOnClickListener {
-            startActivity(Intent(root.context,LoginActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+            startActivity(Intent(root.context, LoginActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
         }
         return root
     }

@@ -31,5 +31,6 @@
     <string name="share">Share</string>
     <string name="about_menu">About</string>
     <string name="email">Email</string>
+    <string name="user_data_pref_file">USER_DATA_PREF_FILE</string>
 
 </resources>

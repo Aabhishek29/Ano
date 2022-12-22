@@ -86,4 +86,60 @@
 
 
 
+    <style name="Theme.Ano.primary.reply.blue" parent="Theme.Material3.Light">
+
+
+        <item name="actionBarTheme">@style/Theme.MaterialComponents.NoActionBar</item>
+        <!-- enable window content transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+
+        <!-- specify enter and exit transitions -->
+        <item name="android:windowEnterTransition">@transition/fade_out</item>
+        <item name="android:windowExitTransition">@transition/fade_out</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary_reply_blue</item>
+        <item name="colorPrimaryVariant">@color/primary_light_reply_blue</item>
+        <item name="colorOnPrimary">@color/primary_dark_reply_blue</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondary_reply_orange</item>
+        <item name="colorSecondaryVariant">#FFC977</item>
+        <item name="colorOnSecondary">#F89602</item>
+        <!-- Status bar color. -->
+
+
+        <!-- Customize your theme here. -->
+
+
+        <item name="buttonTint" >@color/secondary_reply_orange</item>
+    </style>
+
+    <style name="Theme.Ano.primary.shrine" parent="Theme.Material3.Light">
+
+
+        <item name="actionBarTheme">@style/Theme.MaterialComponents.NoActionBar</item>
+        <!-- enable window content transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+
+        <!-- specify enter and exit transitions -->
+        <item name="android:windowEnterTransition">@transition/fade_out</item>
+        <item name="android:windowExitTransition">@transition/fade_out</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary_shrine</item>
+        <item name="colorPrimaryVariant">@color/primary_shrine_light</item>
+        <item name="colorOnPrimary">@color/primary_dark_shrine</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/primary_dark_shrine</item>
+        <item name="colorSecondaryVariant">#755355</item>
+        <item name="colorOnSecondary">#3E1B1E</item>
+        <!-- Status bar color. -->
+
+
+        <!-- Customize your theme here. -->
+
+
+        <item name="buttonTint" >@color/primary_dark_shrine</item>
+    </style>
+
+
+
 </resources>
